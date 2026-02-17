@@ -2,14 +2,18 @@
 App.changelog = [
     {
         version: "v0.0.2 (4)",
-        date: "In Progress",
+        date: "2026-02-17",
         changes: [
-            "<b>Upcoming Features (Planned):</b>",
-            "Data Module: File IO (<code>read_text</code>, <code>write_text</code>, <code>read_bytes</code>), <code>exists</code>, <code>list_dir</code>, <code>alloc</code>, <code>copy</code>.",
+            "Data Module: File IO (<code>read_text</code>, <code>write_text</code>, <code>read_bytes</code>, <code>exists</code>, <code>list_dir</code>, <code>alloc</code>, <code>copy</code>).",
+            "IO Formats: <code>json.parse</code>/<code>stringify</code> and <code>csv.parse</code>/<code>write</code>.",
             "Database Module: SQLite integration via <code>db.connect</code>, <code>query</code>, <code>execute</code>.",
             "Graph Module: Native UI Widgets (<code>window</code>, <code>button</code>, <code>label</code>, <code>input_text</code>) and Plotting (<code>plot_lines</code>).",
-            "LLM Module: Local GGUF inference support (<code>load</code>, <code>generate</code>) via <code>llama.cpp</code> bindings.",
-            "IO formats: <code>json.parse</code>/<code>stringify</code> and <code>csv.parse</code>/<code>write</code>."
+            "LLM Module: Local inference via Ollama (<code>llm.chat</code>, <code>llm.generate</code>).",
+            "Cross-platform installer: supports Windows, Linux, and macOS. Installs to <code>~/.kinetix/bin/</code>, adds to PATH, creates file associations.",
+            "Unified build system with platform-specific scripts (<code>build_installer.ps1</code>, <code>build_linux.sh</code>, <code>build_macos.sh</code>).",
+            "CLI: <code>compile --exe</code> now produces correct binary names on all platforms.",
+            "README updated with language features, standard library overview, and build instructions.",
+            "All dates verified to 2026."
         ]
     },
     {
