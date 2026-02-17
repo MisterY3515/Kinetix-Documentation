@@ -1,6 +1,21 @@
 // CHANGELOG DATA
 App.changelog = [
     {
+        version: "v0.0.2 (5)",
+        date: "2026-02-17",
+        changes: [
+            "<b>Kinetix Shell:</b> <code>kivm shell</code> — interactive terminal with bash-like commands (ls, cd, cat, mkdir, rm, cp, mv, echo, pwd, touch, which, whoami, grep, head, tail, wc) + Kinetix expression evaluation + system command fallback.",
+            "Terminal Module (<code>term.*</code>): ANSI control functions — <code>clear</code>, <code>set_color</code>, <code>reset_color</code>, <code>bold</code>, <code>italic</code>, <code>underline</code>, <code>strikethrough</code>, <code>color_print</code>, <code>move_cursor</code>, <code>hide_cursor</code>, <code>show_cursor</code>, <code>size</code>.",
+            "Terminal Module: Bash-like commands — <code>ls</code>, <code>cd</code>, <code>pwd</code>, <code>cat</code>, <code>mkdir</code>, <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>echo</code>, <code>touch</code>, <code>which</code>, <code>whoami</code>, <code>env</code>, <code>head</code>, <code>tail</code>, <code>wc</code>, <code>grep</code>.",
+            "Documentation: <code>kivm docs</code> opens offline documentation in the default browser.",
+            "Installer: no console window on Windows (<code>#![windows_subsystem = \"windows\"]</code>).",
+            "Installer: step-by-step progress bar during installation.",
+            "Installer: option to install offline documentation.",
+            "Installer: KiFile.png icon embedded for file associations on all platforms.",
+            "Linux: <code>.desktop</code> entries for Kinetix and Kinetix Shell."
+        ]
+    },
+    {
         version: "v0.0.2 (4)",
         date: "2026-02-17",
         changes: [
@@ -9,11 +24,9 @@ App.changelog = [
             "Database Module: SQLite integration via <code>db.connect</code>, <code>query</code>, <code>execute</code>.",
             "Graph Module: Native UI Widgets (<code>window</code>, <code>button</code>, <code>label</code>, <code>input_text</code>) and Plotting (<code>plot_lines</code>).",
             "LLM Module: Local inference via Ollama (<code>llm.chat</code>, <code>llm.generate</code>).",
-            "Cross-platform installer: supports Windows, Linux, and macOS. Installs to <code>~/.kinetix/bin/</code>, adds to PATH, creates file associations.",
-            "Unified build system with platform-specific scripts (<code>build_installer.ps1</code>, <code>build_linux.sh</code>, <code>build_macos.sh</code>).",
-            "CLI: <code>compile --exe</code> now produces correct binary names on all platforms.",
-            "README updated with language features, standard library overview, and build instructions.",
-            "All dates verified to 2026."
+            "Cross-platform installer: supports Windows, Linux, and macOS.",
+            "CLI: <code>compile --exe</code> produces correct binary names on all platforms.",
+            "README updated with language features and standard library overview."
         ]
     },
     {
@@ -24,7 +37,6 @@ App.changelog = [
             "System Module: added <code>cpu_usage</code>, <code>memory_free</code>, <code>uptime</code>, <code>os_name</code>, <code>os_version</code>, <code>hostname</code>, <code>user_name</code>.",
             "System Module: implemented <code>shell</code>, <code>get_hardware_info</code>, <code>clipboard_set</code>, <code>clipboard_get</code>, <code>gc</code>.",
             "Net Module: added <code>get</code>, <code>post</code>, <code>download</code>.",
-
             "Graph Module: added <code>plot_lines</code>, <code>plot_histogram</code>, <code>tree_node</code>, <code>table</code> widgets.",
             "Crypto Module: added <code>hash</code>, <code>hmac</code>, <code>uuid</code>, <code>random_bytes</code>.",
             "Audio Module: added <code>play_oneshot</code> and <code>play_stream</code>.",
