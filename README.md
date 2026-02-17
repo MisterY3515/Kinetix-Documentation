@@ -11,3 +11,6 @@ Open `index.html` in a browser.
 - `css/` — Stylesheets
 - `js/` — Core application logic
 - `data/` — Documentation modules (one file per section)
+
+## License
+See [LICENSE](LICENSE).
