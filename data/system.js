@@ -1,0 +1,38 @@
+App.register('system', {
+    title: 'System',
+    category: 'Libraries/Core',
+    description: 'Provides direct access to operating system facilities, hardware information, and process control. It bridges the high-level Kinetix runtime with low-level OS syscalls.',
+    example: `// Get system info
+let os = system.os_name()
+let cores = system.get_hardware_info().cpu_cores
+
+// Execute specific command based on OS
+if os == "Windows" {
+    system.shell("cls")
+} else {
+    system.shell("clear")
+}`,
+    methods: [
+        { name: 'time', ret: 'float', params: '()', desc: 'Returns current timestamp (seconds).', example: 'let t = system.time()', since: 'v0.0.1 (1)' },
+        { name: 'sleep', ret: 'void', params: '(ms: int)', desc: 'Sleeps the current thread.', example: 'system.sleep(1000)', since: 'v0.0.1 (1)' },
+        { name: 'exit', ret: 'void', params: '(code: int)', desc: 'Terminates the program with the specified exit code.', example: 'system.exit(0)', since: 'v0.0.1 (1)' },
+        { name: 'cpu_usage', ret: 'float', params: '()', desc: 'Returns current CPU usage percentage (0.0-100.0).', details: 'Samples the CPU load over a 100ms interval. Blocking.', example: 'let usage = system.cpu_usage()', since: 'v0.0.1 (3)' },
+        { name: 'memory_free', ret: 'int', params: '()', desc: 'Returns available RAM in Megabytes.', example: 'if system.memory_free() < 100 { log("Low RAM") }', since: 'v0.0.1 (3)' },
+        { name: 'memory_total', ret: 'int', params: '()', desc: 'Returns total installed RAM in Megabytes.', example: 'let total_ram = system.memory_total()', since: 'v0.0.1 (3)' },
+        { name: 'get_hardware_info', ret: 'Dictionary', params: '()', desc: 'Returns a dictionary containing cpu_model, cpu_cores, gpu_name, etc.', example: 'let info = system.get_hardware_info()\nprint(info["cpu_model"])', since: 'v0.0.1 (1)' },
+        { name: 'os_name', ret: 'String', params: '()', desc: 'Returns the OS name (e.g., "Windows", "Linux", "MacOS").', example: 'if system.os_name() == "Windows" { ... }', since: 'v0.0.1 (3)' },
+        { name: 'os_version', ret: 'String', params: '()', desc: 'Returns the OS version string.', example: 'print(system.os_version()) // "10.0.19045"', since: 'v0.0.1 (3)' },
+        { name: 'hostname', ret: 'String', params: '()', desc: 'Returns the network hostname of the machine.', example: 'print(system.hostname())', since: 'v0.0.1 (3)' },
+        { name: 'user_name', ret: 'String', params: '()', desc: 'Returns the current logged-in user name.', example: 'print("Hello " + system.user_name())', since: 'v0.0.1 (3)' },
+        { name: 'uptime', ret: 'int', params: '()', desc: 'Returns system uptime in seconds.', example: 'let sec = system.uptime()', since: 'v0.0.1 (3)' },
+        { name: 'clipboard_set', ret: 'void', params: '(text: String)', desc: 'Sets the system clipboard content.', example: 'system.clipboard_set("Copied text")', since: 'v0.0.1 (1)' },
+        { name: 'clipboard_get', ret: 'String', params: '()', desc: 'Gets text from the system clipboard.', example: 'let pasted = system.clipboard_get()', since: 'v0.0.1 (1)' },
+        { name: 'shell', ret: 'String', params: '(cmd: String)', desc: 'Executes a shell command and returns stdout.', details: 'Requires "allow_shell" permission in .ncomp.', example: 'let files = system.shell("dir")', since: 'v0.0.1 (3)' },
+        { name: 'gc', ret: 'void', params: '()', desc: 'Forces a garbage collection cycle (if running in NVM mode with GC enabled).', example: 'system.gc()', since: 'v0.0.1 (1)' }
+    ],
+    properties: [
+        { name: 'version', type: 'String', default: '"0.1.0"', desc: 'Kinetix Runtime Version.' },
+        { name: 'arch', type: 'String', default: '"x64"', desc: 'Processor architecture.' },
+        { name: 'pid', type: 'int', default: '[Process ID]', desc: 'Current Process ID.' }
+    ]
+});
