@@ -1,6 +1,17 @@
 // CHANGELOG DATA
 App.changelog = [
     {
+        version: "v0.0.3 (6)",
+        date: "2026-02-18",
+        changes: [
+            "<b>Fixed:</b> Version display in documentation and CLI now correctly shows v0.0.3 Build 6.",
+            "<b>Core Architecture Upgrade:</b> Switched to <b>16-bit bytecode</b> (u16 operands). The VM now supports up to <b>65,535 registers and constants</b> per stack frame (previously 255).",
+            "<b>Linear Type System:</b> Implemented <b>Ownership & Borrowing</b> checks. Variables now have move semantics; using a moved value triggers a compile-time error. This ensures memory safety without a GC.",
+            "Compiler Optimization: <code>print()</code> is now an intrinsic that emits a direct <code>Opcode::Print</code> instruction.",
+            "Internal: Refactored <code>Compiler</code> and <code>VM</code> to support larger stack frames and dynamic register allocation."
+        ]
+    },
+    {
         version: "v0.0.2 (5)",
         date: "2026-02-17",
         changes: [
