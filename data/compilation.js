@@ -8,9 +8,11 @@ App.register('compilation', {
         <div class="detail-box">
             <h4>Native (AOT)</h4>
             <p>Compiles Kinetix code via LLVM directly to machine code (x64, ARM64).</p>
+            <pre><code class="language-bash">kivm compile -i main.kix --native</code></pre>
+            <p>Produces a native object file (<code>.o</code>) optimized with LLVM O2 pipeline. Requires <code>llvm</code> feature enabled.</p>
             <ul>
-                <li><strong>Pros</strong>: Maximum performance, no runtime dependency.</li>
-                <li><strong>Cons</strong>: Slower build times.</li>
+                <li><strong>Pros</strong>: Maximum performance, C-compatible ABI, no runtime dependency (if linked).</li>
+                <li><strong>Cons</strong>: Slower build times, requires LLVM 21 installed to build compiler.</li>
                 <li><strong>Use Case</strong>: Release builds, System tools, High-performance Games.</li>
             </ul>
         </div>

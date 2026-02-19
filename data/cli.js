@@ -30,7 +30,9 @@ kivm compile -i main.kix`,
                 `// Compile to custom output path
 kivm compile -i main.kix -o build/game.exki`,
                 `// Compile to standalone executable
-kivm compile -i main.kix --exe`
+kivm compile -i main.kix --exe`,
+                `// Compile to native object file (LLVM)
+kivm compile -i main.kix --native`
             ],
             since: 'v0.0.1 (1)'
         },

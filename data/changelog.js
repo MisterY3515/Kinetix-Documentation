@@ -1,6 +1,19 @@
 // CHANGELOG DATA
 App.changelog = [
     {
+        version: "v0.0.3 (8)",
+        date: "2026-02-19",
+        changes: [
+            "<b>LLVM Backend (Build 8):</b> Initial implementation of native code generation via LLVM 21.",
+            "New CLI flag: <code>kivm compile --native</code> compiles Kinetix source to native object files (<code>.o</code>).",
+            "Added <code>llvm</code> feature flag to <code>kicomp</code> and <code>cli</code> crates.",
+            "<b>CI Fix:</b> Resolved type mismatch in <code>builtins.rs</code> tests by using <code>VM::new(CompiledProgram::new())</code>.",
+            "Architecture: Introduced <code>LLVMCodegen</code> for AST-to-LLVM-IR translation using <code>inkwell</code> crate.",
+            "<b>Graph Module:</b> Added <code>draw_line</code> and <code>draw_circle</code> for primitive geometric rendering.",
+            "<b>Documentation:</b> Systematized API statuses across all JS modules and standardized output bindings to <code>print</code>."
+        ]
+    },
+    {
         version: "v0.0.3 (7)",
         date: "2026-02-19",
         changes: [
