@@ -1,6 +1,19 @@
 // CHANGELOG DATA
 App.changelog = [
     {
+        version: "v0.0.3 (7)",
+        date: "2026-02-19",
+        changes: [
+            "<b>Arena Allocation:</b> AST nodes are now allocated in a contiguous memory arena (<code>bumpalo</code>). Zero heap fragmentation and faster parsing.",
+            "Replaced all <code>Box&lt;T&gt;</code> with arena references <code>&amp;'a T</code> in the AST, Parser, and Compiler.",
+            "Parser now accepts a <code>&amp;Bump</code> arena and allocates nodes via <code>arena.alloc()</code>.",
+            "<b>Installer Fix:</b> Build script corrected to produce installer with up-to-date binaries.",
+            "Installer: added PATH conflict detection to diagnose version shadowing.",
+            "Build script: added <code>cargo clean</code> step and version injection (<code>KINETIX_BUILD</code>).",
+            "All 32 parser tests passing with arena-allocated AST."
+        ]
+    },
+    {
         version: "v0.0.3 (6)",
         date: "2026-02-19",
         changes: [
