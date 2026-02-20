@@ -1,6 +1,20 @@
 // CHANGELOG DATA
 App.changelog = [
     {
+        version: "v0.0.4 (9)",
+        date: "2026-02-20",
+        changes: [
+            "<b>LLVM Native Data Types (Build 9):</b> Strings and Arrays are now compiled as native LLVM <code>StructType</code> (<code>{ i64 length, i8* data }</code> and <code>{ i64 len, i64 cap, i64* data }</code>).",
+            "LLVM codegen now declares <code>malloc</code>, <code>memcpy</code>, <code>strcmp</code> from libc for dynamic memory allocation.",
+            "<b>Math Bindings:</b> <code>math.sin</code>, <code>math.cos</code>, <code>math.sqrt</code>, <code>math.pow</code> compile directly to native <code>libm</code> calls via LLVM.",
+            "<b>Array Literals:</b> <code>[1, 2, 3]</code> in native mode allocates heap memory via <code>malloc</code> and stores elements via <code>GetElementPtr</code>.",
+            "<b>Language Specification:</b> Formalized EBNF syntax, Hindley-Milner Type Inference rules, and Linear Type System documentation.",
+            "<b>Language Reference Draft:</b> Created formal Kinetix Language Reference document covering types, ownership, control flow, and memory model.",
+            "<b>VM Fix:</b> Implemented <code>Opcode::And</code> and <code>Opcode::Or</code> handlers for logical <code>&&</code> and <code>||</code> operators.",
+            "All crates bumped to version <code>0.0.4</code>."
+        ]
+    },
+    {
         version: "v0.0.3 (8)",
         date: "2026-02-19",
         changes: [
