@@ -46,25 +46,25 @@ counter = counter + 1 // OK: 1</code></pre>
 <h2>Control Flow</h2>
 <p>Standard <code>if-else</code> and <code>switch</code> constructs.</p>
 <pre><code>if score > 100 {
-    print("High Score!")
+    println("High Score!")
 } else if score > 50 {
-    print("Good job")
+    println("Good job")
 } else {
-    print("Try again")
+    println("Try again")
 }
 
 // Switch (Pattern Matching)
 switch state {
-    case "IDLE": print("Waiting...")
-    case "RUN":  print("Running")
-    default:     print("Unknown")
+    case "IDLE": println("Waiting...")
+    case "RUN":  println("Running")
+    default:     println("Unknown")
 }</code></pre>
 
 <h2>Loops</h2>
 <p>Kinetix provides <code>for</code>, <code>while</code>, and <code>loop</code>.</p>
 <pre><code>// For Loop (Range)
 for i in 0..10 {
-    print(i)
+    println(i)
 }
 
 // While Loop

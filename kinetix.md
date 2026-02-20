@@ -31,7 +31,7 @@ Memory is managed without a GC via Linear Types (Move semantics).
 
 ## 2. Standard Library Builtins
 Always available globally without imports.
-- **IO**: `print(...)`, `println(...)`, `input("Prompt: ")`
+- **IO**: `println(...)`, `println(...)`, `input("Prompt: ")`
 - **Utils**: `len(arr_or_str)`, `typeof(val)`, `assert(cond, msg)`, `copy(val)`
 - **Conversions**: `str(v)`, `int(v)`, `float(v)`, `bool(v)`, `byte(v)`, `char(v)`
 

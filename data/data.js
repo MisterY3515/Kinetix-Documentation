@@ -9,7 +9,7 @@ App.register('data', {
         { name: 'write_text', ret: 'void', params: '(path: String, content: String)', desc: 'Writes text file.', example: 'data.write_text("log.txt", "Error 404")', status: 'Not Implemented' },
         { name: 'read_bytes', ret: 'Buffer', params: '(path: String)', desc: 'Reads binary file.', example: 'let bytes = data.read_bytes("image.png")', status: 'Not Implemented' },
         { name: 'exists', ret: 'bool', params: '(path: String)', desc: 'Checks file existence.', example: 'if data.exists("save.dat") { load() }', status: 'Not Implemented' },
-        { name: 'list_dir', ret: 'List<String>', params: '(path: String)', desc: 'Lists directory contents.', example: 'for f in data.list_dir(".") { print(f) }', status: 'Not Implemented' },
+        { name: 'list_dir', ret: 'List<String>', params: '(path: String)', desc: 'Lists directory contents.', example: 'for f in data.list_dir(".") { println(f) }', status: 'Not Implemented' },
 
         // Buffer Ops
         { name: 'alloc', ret: 'Buffer', params: '(size: int)', desc: 'Allocates memory.', example: 'let buf = data.alloc(1024)', status: 'Not Implemented' },

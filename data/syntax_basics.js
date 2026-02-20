@@ -36,11 +36,11 @@ App.register('syntax_control', {
         <h3>If / Else</h3>
         <p>Parentheses are optional around conditions, but braces are mandatory.</p>
         <pre><code class="language-rust">if x > 5 {
-    print("High")
+    println("High")
 } else if x < 2 {
-    print("Low")
+    println("Low")
 } else {
-    print("Mid")
+    println("Mid")
 }</code></pre>
 
         <h3>Loops</h3>
@@ -56,20 +56,20 @@ while x > 0 {
 
 // For Loop (Iterators)
 for i in 0..10 {
-    print(i) // 0 to 9
+    println(i) // 0 to 9
 }
 
 for item in list {
-    print(item)
+    println(item)
 }</code></pre>
 
         <h3>Pattern Matching</h3>
         <p>The <code>match</code> expression is robust and exhaustive.</p>
         <pre><code class="language-rust">match value {
-    1 => print("One"),
-    2 | 3 => print("Two or Three"),
-    x if x > 10 => print("Big Number"),
-    _ => print("Default")
+    1 => println("One"),
+    2 | 3 => println("Two or Three"),
+    x if x > 10 => println("Big Number"),
+    _ => println("Default")
 }</code></pre>
     `
 });

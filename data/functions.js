@@ -3,7 +3,7 @@ App.register('functions_global', {
     category: 'Manual/Functions',
     description: 'Core functions available in the global scope without importing any module.',
     methods: [
-        { name: 'print', ret: 'void', params: '(varargs)', desc: 'Prints values to stdout with newline.', example: 'print("Hello", 42, true)', since: 'v0.0.1 (1)' },
+        { name: 'print', ret: 'void', params: '(varargs)', desc: 'Prints values to stdout with newline.', example: 'println("Hello", 42, true)', since: 'v0.0.1 (1)' },
         { name: 'input', ret: 'String', params: '(prompt: String)', desc: 'Reads a line from stdin.', example: 'let name = input("Enter name: ")', since: 'v0.0.1 (1)' },
         { name: 'len', ret: 'int', params: '(container: Any)', desc: 'Returns the length of a list, string, or map.', example: 'len([1, 2, 3]) // 3', since: 'v0.0.1 (1)' },
         { name: 'typeof', ret: 'String', params: '(val: Any)', desc: 'Returns the type name of a value.', example: 'typeof("text") // "String"', since: 'v0.0.1 (1)' },
@@ -19,11 +19,11 @@ App.register('functions_iter', {
     category: 'Manual/Functions',
     description: 'Functions for traversing and manipulating sequences.',
     example: `// Range
-for i in range(5) { print(i) }
+for i in range(5) { println(i) }
 
 // Zip
 for (name, score) in zip(names, scores) {
-    print(f"{name}: {score}")
+    println(f"{name}: {score}")
 }`,
     methods: [
         { name: 'range', ret: 'Iterator', params: '(start: int, end: int, step: int = 1)', desc: 'Generates a sequence of numbers.', example: 'range(0, 10, 2) // 0, 2, 4, 6, 8', since: 'v0.0.1 (1)' },

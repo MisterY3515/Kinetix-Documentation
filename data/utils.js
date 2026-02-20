@@ -5,7 +5,7 @@ App.register('thread', {
     category: 'Libraries/Core',
     description: 'Concurrency primitives.',
     methods: [
-        { name: 'spawn', ret: 'Task', params: '(fn: Function)', desc: 'Spawns a new thread.', example: 'thread.spawn(fn() { print("Async") })', status: 'Not Implemented' },
+        { name: 'spawn', ret: 'Task', params: '(fn: Function)', desc: 'Spawns a new thread.', example: 'thread.spawn(fn() { println("Async") })', status: 'Not Implemented' },
         { name: 'sleep', ret: 'void', params: '(ms: int)', desc: 'Sleeps the current thread.', example: 'thread.sleep(1000) // 1 second', status: 'Not Implemented' },
         { name: 'lock', ret: 'Mutex', params: '()', desc: 'Creates a mutex.', example: 'let m = thread.lock()', status: 'Not Implemented' },
         { name: 'channel', ret: 'Channel', params: '(capacity: int)', desc: 'Creates a CSP channel.', example: 'let c = thread.channel(10)', status: 'Not Implemented', since: 'v0.0.1 (1)' }
@@ -58,7 +58,7 @@ App.register('llm', {
     example: `let bot = llm.load("llama-3-8b.gguf", gpu_layers: 32)
 let stream = bot.generate_stream("Why is the sky blue?")
 for token in stream {
-    print(token)
+    println(token)
 }`,
     methods: [
         { name: 'load', ret: 'LLMModel', params: '(path: String, opts: Dictionary)', desc: 'Loads a local model (GGUF).', example: 'llm.load("model.gguf", {})', status: 'Not Implemented' },
