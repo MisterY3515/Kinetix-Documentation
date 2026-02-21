@@ -1,7 +1,7 @@
 App.register('graph', {
     title: 'Graph',
     category: 'Libraries/Multimedia',
-    description: 'Immediate-mode UI toolkit and 2D renderer. Supports complex layouts, themes, and interactive widgets.',
+    description: '<p>The <strong>Graph</strong> module is an immediate-mode UI toolkit and 2D renderer. It provides native window management, interactive widgets (buttons, sliders, text inputs), and plotting capabilities — all from Kinetix code.</p><p>The rendering is hardware-accelerated and supports themes, complex layouts with <code>vbox</code>/<code>hbox</code> containers, and pixel-level drawing for custom graphics.</p>',
     example: `graph.window("Control Panel", 300, 500) {
     graph.vbox() {
         if graph.button("Save Settings") {

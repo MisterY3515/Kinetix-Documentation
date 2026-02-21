@@ -2,7 +2,7 @@
 App.register('net', {
     title: 'Net',
     category: 'Libraries/Network',
-    description: 'Async Networking module. Supports HTTP/1.1, HTTP/2, and WebSockets.',
+    description: '<p>The <strong>Net</strong> module provides asynchronous networking capabilities for HTTP/1.1, HTTP/2, and WebSocket protocols. Use it to make API requests, download files, and build client-server applications.</p><p>All network operations return <code>Future</code> values and should be used with <code>await</code>. Server features (TCP listeners, WebSocket servers) are planned for a future release.</p>',
     methods: [
         { name: 'get', ret: 'Future<Response>', params: '(url: String)', desc: 'Async GET request.', example: 'let res = await net.get("https://api.site.comv/data")', implemented: 'v0.0.1 (3)' },
         { name: 'post', ret: 'Future<Response>', params: '(url: String, body: Variant)', desc: 'Async POST request.', example: 'let res = await net.post("https://api.site.com/submit", { "id": 1 })', implemented: 'v0.0.1 (3)' },

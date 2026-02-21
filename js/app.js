@@ -170,7 +170,11 @@ const App = {
 
             if (catA !== catB) return catA.localeCompare(catB);
 
-            // If categories are same, sort by title
+            // Within same category, sort by explicit order field, then title
+            const orderA = this.docs[a].order || 999;
+            const orderB = this.docs[b].order || 999;
+            if (orderA !== orderB) return orderA - orderB;
+
             return this.docs[a].title.localeCompare(this.docs[b].title);
         });
     },
@@ -191,9 +195,9 @@ const App = {
 
             main.appendChild(section);
             // Add spacer
-            main.appendChild(document.createElement('br'));
-            main.appendChild(document.createElement('hr'));
-            main.appendChild(document.createElement('br'));
+            const divider = document.createElement('div');
+            divider.className = 'section-divider';
+            main.appendChild(divider);
         });
     },
 
@@ -401,19 +405,47 @@ const App = {
         );
 
         if (methodsToCheck.length > 0) {
-            // Optional: Only show detailed section if there are details
-            // But for now, we just list them if they exist in the HTML structure
             container.appendChild(document.createElement('hr'));
+            const headerRow = document.createElement('div');
+            headerRow.style.display = 'flex';
+            headerRow.style.justifyContent = 'space-between';
+            headerRow.style.alignItems = 'baseline';
+
             const h2 = document.createElement('h2');
             h2.innerText = "Method Details";
+            h2.style.borderBottom = 'none'; // remove border for flex header
+            h2.style.margin = '32px 0 16px 0';
+
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'expand-toggle';
+            toggleBtn.innerText = 'Expand All';
+            toggleBtn.style.marginBottom = '0';
+            let allOpen = false;
+            toggleBtn.onclick = () => {
+                allOpen = !allOpen;
+                toggleBtn.innerText = allOpen ? 'Collapse All' : 'Expand All';
+                container.querySelectorAll('.method-accordion').forEach(d => d.open = allOpen);
+            };
+
+            headerRow.appendChild(h2);
+            headerRow.appendChild(toggleBtn);
+            container.appendChild(headerRow);
+
+            // Re-add border bottom manually since flex container ruins the CSS pseudo element
+            const borderDiv = document.createElement('div');
+            borderDiv.style.borderBottom = '1px solid var(--border)';
+            borderDiv.style.marginBottom = '24px';
+            borderDiv.style.position = 'relative';
+            borderDiv.innerHTML = '<div style="position: absolute; bottom: -1px; left: 0; width: 60px; height: 1px; background: var(--accent);"></div>';
+            container.appendChild(borderDiv);
+
             methodsToCheck.forEach(method => {
-                const box = document.createElement('div');
-                box.className = 'detail-box';
-                // Unique ID for anchor
+                const box = document.createElement('details');
+                box.className = 'method-accordion';
                 box.id = `${key}:${method.name}`;
 
                 box.innerHTML = `
-                    <div class="detail-header method-signature-header">
+                    <summary class="detail-header method-signature-header">
                         <div class="signature-left">
                             <span class="type">${method.ret}</span> <span class="method-name">${method.name}</span> <span class="params">${method.params}</span>
                         </div>
@@ -421,10 +453,10 @@ const App = {
                              ${method.status ? `<span class="version-badge not-implemented">${method.status}</span>` : ''}
                              ${method.implemented && !method.status ? `<span class="version-badge since">Implemented</span>` : ''}
                         </div>
-                    </div>
-                    <div class="detail-body">
+                    </summary>
+                    <div class="detail-body" style="padding: 0 20px;">
                         <p>${method.desc}</p>
-                        ${method.details ? `<p>${method.details}</p>` : ''}
+                        ${method.details ? `<p class="method-technical-details"><strong>Technical:</strong> ${method.details}</p>` : ''}
                         ${method.example ? (Array.isArray(method.example) ? method.example.map(ex => `<pre><code class="language-kix">${this.highlightAndLinkCode(ex)}</code></pre>`).join('') : `<pre><code class="language-kix">${this.highlightAndLinkCode(method.example)}</code></pre>`) : ''}
                     </div>
                 `;
@@ -456,7 +488,12 @@ const App = {
 
         const renderNode = (node, container, level = 0) => {
             // Render Items (Pages)
-            node.items.sort((a, b) => a.title.localeCompare(b.title));
+            node.items.sort((a, b) => {
+                const orderA = a.data.order || 999;
+                const orderB = b.data.order || 999;
+                if (orderA !== orderB) return orderA - orderB;
+                return a.title.localeCompare(b.title);
+            });
 
             node.items.forEach(item => {
                 // Page is now a Details element
@@ -579,7 +616,88 @@ const App = {
     },
 
     filterSidebar(query) {
-        // ... (Simplified for brevity, similar logic needed but with new structure)
+        const tree = document.getElementById('nav-tree');
+        const q = query.trim().toLowerCase();
+
+        // Collect all sidebar details (both category-level and page-level)
+        const allDetails = tree.querySelectorAll('details');
+
+        if (!q) {
+            // Empty query: show everything in default state
+            allDetails.forEach(d => {
+                d.style.display = '';
+                // Keep category details open, page details closed
+                const summary = d.querySelector('summary');
+                if (summary && summary.classList.contains('nav-header')) {
+                    d.open = true;
+                } else {
+                    d.open = false;
+                }
+            });
+            return;
+        }
+
+        // For each page-level details, check if it matches
+        allDetails.forEach(d => {
+            const summary = d.querySelector('summary');
+            if (!summary) return;
+
+            // Category headers: handled after pages
+            if (summary.classList.contains('nav-header')) return;
+
+            // Page-level details: check title, methods, groups
+            const link = d.querySelector('.nav-page-link');
+            if (!link) return;
+
+            const title = (link.textContent || '').toLowerCase();
+            const href = (link.getAttribute('href') || '').slice(1); // strip #
+
+            // Check if title or key matches
+            let matches = title.includes(q) || href.includes(q);
+
+            // Check sub-items (methods, groups)
+            if (!matches) {
+                const subItems = d.querySelectorAll('.nav-sub-item');
+                subItems.forEach(sub => {
+                    if ((sub.textContent || '').toLowerCase().includes(q)) {
+                        matches = true;
+                    }
+                });
+            }
+
+            // Check methods/groups from data
+            if (!matches && this.docs[href]) {
+                const data = this.docs[href];
+                const methods = (data.methods || []).concat(
+                    (data.groups || []).flatMap(g => g.methods || [])
+                );
+                for (const m of methods) {
+                    if (m.name.toLowerCase().includes(q) || (m.desc || '').toLowerCase().includes(q)) {
+                        matches = true;
+                        break;
+                    }
+                }
+            }
+
+            d.style.display = matches ? '' : 'none';
+            if (matches) d.open = true;
+        });
+
+        // Category headers: show if any child page is visible
+        allDetails.forEach(d => {
+            const summary = d.querySelector('summary');
+            if (!summary || !summary.classList.contains('nav-header')) return;
+
+            // Check if any visible page exists inside this category
+            const childPages = d.querySelectorAll('details');
+            let anyVisible = false;
+            childPages.forEach(child => {
+                if (child.style.display !== 'none') anyVisible = true;
+            });
+
+            d.style.display = anyVisible ? '' : 'none';
+            if (anyVisible) d.open = true;
+        });
     },
 
     // Helpers

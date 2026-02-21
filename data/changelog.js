@@ -1,6 +1,21 @@
 // CHANGELOG DATA
 App.changelog = [
     {
+        version: "v0.0.5 (10)",
+        date: "2026-02-21",
+        changes: [
+            "<b>MIR Layer (Ownership Resolved IR):</b> New Mid-level IR (<code>mir.rs</code>) that explicitly represents <code>Move</code>, <code>Copy</code>, and <code>Borrow</code> semantics based on type copyability. Primitives are duplicated; heap-allocated types (<code>str</code>, <code>Array</code>, <code>Map</code>) use strict ownership moves.",
+            "<b>Borrow Graph (<code>&</code> / <code>&mut</code>):</b> Added <code>&</code> (immutable borrow) and <code>&mut</code> (mutable borrow) operators to the lexer, parser, HIR, and type system. These generate <code>Operand::Borrow</code> edges in MIR instead of ownership transfers.",
+            "<b>Automatic Drop Injection:</b> <code>MirBuilder</code> now tracks lexical scopes and automatically injects <code>Drop(Place)</code> instructions for non-trivially-copyable variables when leaving a scope block.",
+            "<b>Borrow Checker Engine (<code>borrowck.rs</code>):</b> New graph-based borrow checker pass that traverses the MIR Control Flow Graph. Tracks variable states (<code>Uninitialized</code>, <code>Initialized</code>, <code>Moved</code>) and rejects Use-After-Move violations at compile time.",
+            "<b>Unified Compiler Pipeline:</b> The full 5-step pipeline (<code>AST → Symbol Resolution → Type Constraints → MIR → Borrow Checker → Codegen</code>) is now integrated into <code>kivm exec</code> and <code>kivm compile</code>. Ownership violations produce clean compiler errors.",
+            "<b>Legacy Cleanup:</b> Removed duplicate ownership checks from the old <code>compiler.rs</code> backend. The Borrow Checker (<code>borrowck.rs</code>) is now the sole authority on ownership semantics.",
+            "<b>Function MIR Lowering:</b> <code>HirStmtKind::Function</code> definitions are now properly lowered into separate <code>MirFunction</code> entries and analyzed by the borrow checker.",
+            "<b>Type System:</b> Added <code>Type::Ref(Box&lt;Type&gt;)</code> and <code>Type::MutRef(Box&lt;Type&gt;)</code> variants. Updated unification and constraint collection for reference types.",
+            "<b>Build Version:</b> Updated build identifier to Build 10. Documentation and version strings updated."
+        ]
+    },
+    {
         version: "v0.0.4 (9)",
         date: "2026-02-21",
         changes: [
