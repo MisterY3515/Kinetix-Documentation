@@ -9,7 +9,7 @@ App.register('cli', {
             params: '<file.kix>',
             desc: 'Compiles and runs a Kinetix source file immediately.',
             example: 'kivm exec main.kix',
-            since: 'v0.0.1 (1)'
+            implemented: 'v0.0.1 (1)'
         },
         {
             name: 'run',
@@ -17,7 +17,7 @@ App.register('cli', {
             params: '<file.exki>',
             desc: 'Executes a compiled bytecode bundle.',
             example: 'kivm run main.exki',
-            since: 'v0.0.1 (1)'
+            implemented: 'v0.0.1 (1)'
         },
         {
             name: 'compile',
@@ -34,7 +34,7 @@ kivm compile -i main.kix --exe`,
                 `// Compile to native object file (LLVM)
 kivm compile -i main.kix --native`
             ],
-            since: 'v0.0.1 (1)'
+            implemented: 'v0.0.1 (1)'
         },
         {
             name: 'version',
@@ -42,7 +42,7 @@ kivm compile -i main.kix --native`
             params: '',
             desc: 'Displays current version info.',
             example: 'kivm version',
-            since: 'v0.0.1 (1)'
+            implemented: 'v0.0.1 (1)'
         }
     ]
 });

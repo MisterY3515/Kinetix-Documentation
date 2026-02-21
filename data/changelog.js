@@ -2,16 +2,21 @@
 App.changelog = [
     {
         version: "v0.0.4 (9)",
-        date: "2026-02-20",
+        date: "2026-02-21",
         changes: [
-            "<b>LLVM Native Data Types (Build 9):</b> Strings and Arrays are now compiled as native LLVM <code>StructType</code> (<code>{ i64 length, i8* data }</code> and <code>{ i64 len, i64 cap, i64* data }</code>).",
+            "<b>LLVM Function Definitions:</b> User-defined functions now compile to native LLVM IR. Parameters, return values, and cross-function calls are fully supported.",
+            "<b>LLVM Native Data Types:</b> Strings and Arrays are now compiled as native LLVM <code>StructType</code> (<code>{ i64 length, i8* data }</code> and <code>{ i64 len, i64 cap, i64* data }</code>).",
             "LLVM codegen now declares <code>malloc</code>, <code>memcpy</code>, <code>strcmp</code> from libc for dynamic memory allocation.",
             "<b>Math Bindings:</b> <code>math.sin</code>, <code>math.cos</code>, <code>math.sqrt</code>, <code>math.pow</code> compile directly to native <code>libm</code> calls via LLVM.",
             "<b>Array Literals:</b> <code>[1, 2, 3]</code> in native mode allocates heap memory via <code>malloc</code> and stores elements via <code>GetElementPtr</code>.",
+            "<b>Tail Call Optimization:</b> The compiler detects <code>return f(x)</code> patterns and emits <code>TailCall</code> opcode instead of <code>Call + Return</code>, reusing the stack frame for constant-space recursion.",
+            "<b>Runtime Error Line Numbers:</b> Errors now display source line numbers and function names (e.g., <code>[line 5] in &lt;main&gt;: Invalid types for Add</code>).",
+            "<b>Type System Foundation:</b> Four new compiler modules — <code>types.rs</code> (Type enum with HM variables), <code>symbol.rs</code> (scoped symbol table), <code>hir.rs</code> (typed AST), <code>typeck.rs</code> (constraint collection + Robinson unification with occurs check).",
             "<b>Language Specification:</b> Formalized EBNF syntax, Hindley-Milner Type Inference rules, and Linear Type System documentation.",
             "<b>Language Reference Draft:</b> Created formal Kinetix Language Reference document covering types, ownership, control flow, and memory model.",
             "<b>VM Fix:</b> Implemented <code>Opcode::And</code> and <code>Opcode::Or</code> handlers for logical <code>&&</code> and <code>||</code> operators.",
-            "All crates bumped to version <code>0.0.4</code>."
+            "<b>Backward Compatibility:</b> <code>.exki</code> files compiled before this build now load correctly (<code>line_map</code> defaults to empty).",
+            "<b>Documentation:</b> Renamed <code>since</code> badge to <code>Implemented</code> across all API docs."
         ]
     },
     {

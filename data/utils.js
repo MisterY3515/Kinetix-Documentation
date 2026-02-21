@@ -8,7 +8,7 @@ App.register('thread', {
         { name: 'spawn', ret: 'Task', params: '(fn: Function)', desc: 'Spawns a new thread.', example: 'thread.spawn(fn() { println("Async") })', status: 'Not Implemented' },
         { name: 'sleep', ret: 'void', params: '(ms: int)', desc: 'Sleeps the current thread.', example: 'thread.sleep(1000) // 1 second', status: 'Not Implemented' },
         { name: 'lock', ret: 'Mutex', params: '()', desc: 'Creates a mutex.', example: 'let m = thread.lock()', status: 'Not Implemented' },
-        { name: 'channel', ret: 'Channel', params: '(capacity: int)', desc: 'Creates a CSP channel.', example: 'let c = thread.channel(10)', status: 'Not Implemented', since: 'v0.0.1 (1)' }
+        { name: 'channel', ret: 'Channel', params: '(capacity: int)', desc: 'Creates a CSP channel.', example: 'let c = thread.channel(10)', status: 'Not Implemented', implemented: 'v0.0.1 (1)' }
     ]
 });
 
@@ -22,7 +22,7 @@ App.register('time', {
         { name: 'micros', ret: 'int', params: '()', desc: 'High-res timer (µs).', example: 'let us = time.micros()', status: 'Not Implemented' },
         { name: 'ticks', ret: 'int', params: '()', desc: 'CPU ticks (RDTSC).', example: 'let t = time.ticks()', status: 'Not Implemented' },
         { name: 'format', ret: 'String', params: '(ts: int, fmt: String)', desc: 'Formats timestamp.', example: 'time.format(time.now(), "%Y-%m-%d")', status: 'Not Implemented' },
-        { name: 'parse', ret: 'int', params: '(str: String, fmt: String)', desc: 'Parses timestamp string.', example: 'let ts = time.parse("2023-01-01", "%Y-%m-%d")', status: 'Not Implemented', since: 'v0.0.1 (1)' }
+        { name: 'parse', ret: 'int', params: '(str: String, fmt: String)', desc: 'Parses timestamp string.', example: 'let ts = time.parse("2023-01-01", "%Y-%m-%d")', status: 'Not Implemented', implemented: 'v0.0.1 (1)' }
     ]
 });
 
@@ -31,12 +31,12 @@ App.register('env', {
     category: 'Libraries/Core',
     description: 'Process Environment.',
     methods: [
-        { name: 'get', ret: 'String', params: '(key: String)', desc: 'Get env var.', example: 'let path = env.get("PATH")', since: 'v0.0.1 (2)' },
-        { name: 'set', ret: 'void', params: '(key: String, val: String)', desc: 'Set env var.', example: 'env.set("MY_VAR", "1")', since: 'v0.0.1 (2)' },
-        { name: 'vars', ret: 'Map<String, String>', params: '()', desc: 'Returns all env vars.', example: 'for (k,v) in env.vars() { ... }', since: 'v0.0.1 (2)' },
-        { name: 'args', ret: 'List<String>', params: '()', desc: 'Command line arguments.', example: 'let args = env.args()', since: 'v0.0.1 (2)' },
-        { name: 'cwd', ret: 'String', params: '()', desc: 'Current working directory.', example: 'let dir = env.cwd()', since: 'v0.0.1 (3)' },
-        { name: 'set_cwd', ret: 'void', params: '(path: String)', desc: 'Change working directory.', example: 'env.set_cwd("/tmp")', since: 'v0.0.1 (3)' }
+        { name: 'get', ret: 'String', params: '(key: String)', desc: 'Get env var.', example: 'let path = env.get("PATH")', implemented: 'v0.0.1 (2)' },
+        { name: 'set', ret: 'void', params: '(key: String, val: String)', desc: 'Set env var.', example: 'env.set("MY_VAR", "1")', implemented: 'v0.0.1 (2)' },
+        { name: 'vars', ret: 'Map<String, String>', params: '()', desc: 'Returns all env vars.', example: 'for (k,v) in env.vars() { ... }', implemented: 'v0.0.1 (2)' },
+        { name: 'args', ret: 'List<String>', params: '()', desc: 'Command line arguments.', example: 'let args = env.args()', implemented: 'v0.0.1 (2)' },
+        { name: 'cwd', ret: 'String', params: '()', desc: 'Current working directory.', example: 'let dir = env.cwd()', implemented: 'v0.0.1 (3)' },
+        { name: 'set_cwd', ret: 'void', params: '(path: String)', desc: 'Change working directory.', example: 'env.set_cwd("/tmp")', implemented: 'v0.0.1 (3)' }
     ]
 });
 
@@ -45,9 +45,9 @@ App.register('audio', {
     category: 'Libraries/Multimedia',
     description: 'Audio engine.',
     methods: [
-        { name: 'play_stream', ret: 'Stream', params: '(path: String)', desc: 'Plays music.', example: 'audio.play_stream("music.mp3")', since: 'v0.0.1 (3)' },
-        { name: 'play_oneshot', ret: 'void', params: '(path: String)', desc: 'Plays sound effect.', example: 'audio.play_oneshot("click.wav")', since: 'v0.0.1 (3)' },
-        { name: 'set_volume', ret: 'void', params: '(vol: float)', desc: 'Master volume (0.0 - 1.0).', example: 'audio.set_volume(0.8)', status: 'Not Implemented', since: 'v0.0.1 (1)' }
+        { name: 'play_stream', ret: 'Stream', params: '(path: String)', desc: 'Plays music.', example: 'audio.play_stream("music.mp3")', implemented: 'v0.0.1 (3)' },
+        { name: 'play_oneshot', ret: 'void', params: '(path: String)', desc: 'Plays sound effect.', example: 'audio.play_oneshot("click.wav")', implemented: 'v0.0.1 (3)' },
+        { name: 'set_volume', ret: 'void', params: '(vol: float)', desc: 'Master volume (0.0 - 1.0).', example: 'audio.set_volume(0.8)', status: 'Not Implemented', implemented: 'v0.0.1 (1)' }
     ]
 });
 

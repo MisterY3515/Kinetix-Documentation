@@ -4,9 +4,9 @@ App.register('net', {
     category: 'Libraries/Network',
     description: 'Async Networking module. Supports HTTP/1.1, HTTP/2, and WebSockets.',
     methods: [
-        { name: 'get', ret: 'Future<Response>', params: '(url: String)', desc: 'Async GET request.', example: 'let res = await net.get("https://api.site.comv/data")', since: 'v0.0.1 (3)' },
-        { name: 'post', ret: 'Future<Response>', params: '(url: String, body: Variant)', desc: 'Async POST request.', example: 'let res = await net.post("https://api.site.com/submit", { "id": 1 })', since: 'v0.0.1 (3)' },
-        { name: 'download', ret: 'Future<File>', params: '(url: String, dest: String)', desc: 'Downloads a file.', example: 'await net.download("https://site.com/file.zip", "local.zip")', since: 'v0.0.1 (3)' },
+        { name: 'get', ret: 'Future<Response>', params: '(url: String)', desc: 'Async GET request.', example: 'let res = await net.get("https://api.site.comv/data")', implemented: 'v0.0.1 (3)' },
+        { name: 'post', ret: 'Future<Response>', params: '(url: String, body: Variant)', desc: 'Async POST request.', example: 'let res = await net.post("https://api.site.com/submit", { "id": 1 })', implemented: 'v0.0.1 (3)' },
+        { name: 'download', ret: 'Future<File>', params: '(url: String, dest: String)', desc: 'Downloads a file.', example: 'await net.download("https://site.com/file.zip", "local.zip")', implemented: 'v0.0.1 (3)' },
         { name: 'server_create', ret: 'Server', params: '(port: int)', desc: 'Creates a TCP/HTTP server.', example: 'let server = net.server_create(8080)', status: 'Not Implemented' },
         { name: 'socket_connect', ret: 'Socket', params: '(addr: String)', desc: 'Opens a raw TCP connection.', example: 'let sock = net.socket_connect("127.0.0.1:9000")', status: 'Not Implemented' },
         { name: 'socket_bind', ret: 'Socket', params: '(addr: String)', desc: 'Binds a raw TCP socket for listening.', example: 'let server = net.socket_bind("0.0.0.0:8080")', status: 'Not Implemented' },
@@ -22,12 +22,12 @@ App.register('crypto', {
     category: 'Libraries/Network',
     description: 'Cryptographic primitives (Hashing, Encryption, Random).',
     methods: [
-        { name: 'hash', ret: 'String', params: '(data: String, algo: String = "sha256")', desc: 'Computes hash.', example: 'let h = crypto.hash("password123")', since: 'v0.0.1 (1)' },
-        { name: 'hmac', ret: 'String', params: '(key: String, data: String)', desc: 'Computes HMAC.', example: 'let sig = crypto.hmac("secret", "payload")', since: 'v0.0.1 (1)' },
+        { name: 'hash', ret: 'String', params: '(data: String, algo: String = "sha256")', desc: 'Computes hash.', example: 'let h = crypto.hash("password123")', implemented: 'v0.0.1 (1)' },
+        { name: 'hmac', ret: 'String', params: '(key: String, data: String)', desc: 'Computes HMAC.', example: 'let sig = crypto.hmac("secret", "payload")', implemented: 'v0.0.1 (1)' },
         { name: 'aes_encrypt', ret: 'Buffer', params: '(data: Buffer, key: Buffer, iv: Buffer)', desc: 'AES Encryption.', example: 'let enc = crypto.aes_encrypt(plain, key, iv)', status: 'Not Implemented' },
         { name: 'aes_decrypt', ret: 'Buffer', params: '(data: Buffer, key: Buffer, iv: Buffer)', desc: 'AES Decryption.', example: 'let dec = crypto.aes_decrypt(enc, key, iv)', status: 'Not Implemented' },
-        { name: 'random_bytes', ret: 'Buffer', params: '(size: int)', desc: 'Cryptographically secure random number.', example: 'let rnd = crypto.random_bytes(32)', since: 'v0.0.1 (1)' },
-        { name: 'uuid', ret: 'String', params: '()', desc: 'Generates a UUID v4.', example: 'let id = crypto.uuid()', since: 'v0.0.1 (1)' }
+        { name: 'random_bytes', ret: 'Buffer', params: '(size: int)', desc: 'Cryptographically secure random number.', example: 'let rnd = crypto.random_bytes(32)', implemented: 'v0.0.1 (1)' },
+        { name: 'uuid', ret: 'String', params: '()', desc: 'Generates a UUID v4.', example: 'let id = crypto.uuid()', implemented: 'v0.0.1 (1)' }
     ]
 });
 

@@ -271,7 +271,7 @@ const App = {
                                 let footer = '';
 
                                 if (row.status) footer += `<span class="version-badge not-implemented">${row.status}</span> `;
-                                if (row.since) footer += `<span class="version-badge since">Since ${row.since}</span> `;
+                                if (row.implemented) footer += `<span class="version-badge since">Implemented</span> `;
                                 if (row.deprecated) footer += `<span class="version-badge deprecated">Deprecated ${row.deprecated}</span>`;
 
                                 if (footer) {
@@ -312,7 +312,7 @@ const App = {
                         let footer = '';
 
                         if (row.status) footer += `<span class="version-badge not-implemented">${row.status}</span> `;
-                        if (row.since) footer += `<span class="version-badge since">Since ${row.since}</span> `;
+                        if (row.implemented) footer += `<span class="version-badge since">Implemented</span> `;
                         if (row.deprecated) footer += `<span class="version-badge deprecated">Deprecated ${row.deprecated}</span>`;
 
                         if (footer) {
@@ -348,7 +348,7 @@ const App = {
                         let footer = '';
 
                         if (row.status) footer += `<span class="version-badge not-implemented">${row.status}</span> `;
-                        if (row.since) footer += `<span class="version-badge since">Since ${row.since}</span> `;
+                        if (row.implemented) footer += `<span class="version-badge since">Implemented</span> `;
                         if (row.deprecated) footer += `<span class="version-badge deprecated">Deprecated ${row.deprecated}</span>`;
 
                         if (footer) {
@@ -383,7 +383,7 @@ const App = {
                         let footer = '';
 
                         if (row.status) footer += `<span class="version-badge not-implemented">${row.status}</span> `;
-                        if (row.since) footer += `<span class="version-badge since">Since ${row.since}</span> `;
+                        if (row.implemented) footer += `<span class="version-badge since">Implemented</span> `;
                         if (row.deprecated) footer += `<span class="version-badge deprecated">Deprecated ${row.deprecated}</span>`;
 
                         if (footer) {
@@ -419,7 +419,7 @@ const App = {
                         </div>
                         <div class="signature-right">
                              ${method.status ? `<span class="version-badge not-implemented">${method.status}</span>` : ''}
-                             ${method.since && !method.status ? `<span class="version-badge since">Since ${method.since}</span>` : ''}
+                             ${method.implemented && !method.status ? `<span class="version-badge since">Implemented</span>` : ''}
                         </div>
                     </div>
                     <div class="detail-body">
