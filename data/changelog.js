@@ -1,5 +1,17 @@
 App.changelog = [
     {
+        version: "v0.0.6 (14)",
+        date: "2026-02-22",
+        changes: [
+            "<b>Monomorphization Pass:</b> Added explicit monomorphization to clone and specialize generic MIR functions into concrete versions.",
+            "<b>AST Parsing Fix:</b> Resolved a greedy token consumption bug where <code>enum</code>, <code>trait</code>, and <code>impl</code> declarations consumed trailing block braces, causing <code>No prefix parse function for LBrace</code> errors downstream.",
+            "<b>Type Normalization:</b> Implemented a compilation pass to flatten type aliases and canonicalize generic constraints before they hit the Trait Solver.",
+            "<b>Structural Validation:</b> Added post-monomorphization compiler checks to enforce a maximum type depth limit (32 layers) and reject unresolved type variables.",
+            "<b>Compile-Time Drop Verification:</b> Added topological block analysis to mathematically prevent double-free paths and drop calls on uninitialized variables.",
+            "<b>Language Tests:</b> Added comprehensive testing suites for nested generic types, pattern matching, Option/Result, and trait definitions."
+        ]
+    },
+    {
         version: "v0.0.6 (13)",
         date: "2026-02-22",
         changes: [
