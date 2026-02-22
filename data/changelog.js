@@ -1,11 +1,26 @@
 App.changelog = [
     {
+        version: "v0.0.6 (13)",
+        date: "2026-02-22",
+        changes: [
+            "<b>Single-File GUI Installer:</b> Linux and macOS now produce a single standalone installer executable embedding <code>kivm</code> and <code>kicomp</code> via <code>include_bytes!</code>.",
+            "<b>macOS .pkg Installer:</b> <code>build_macos.sh</code> now produces a proper <code>.pkg</code> installer with payload staging, post-install scripts, and LaunchServices registration.",
+            "<b>macOS System Preferences Pane:</b> The macOS <code>.pkg</code> installs a <code>Kinetix.prefPane</code> into <code>/Library/PreferencePanes/</code>, making Kinetix appear in System Preferences (like Java).",
+            "<b>X11/Wayland Crash Fix:</b> Fixed <code>MaximumRequestLengthExceeded</code> crash on Linux by disabling oversized window icon and prioritizing the Wayland backend via <code>WINIT_UNIX_BACKEND</code>.",
+            "<b>File Associations (Linux):</b> Installer now registers XDG MIME types (<code>application/x-kinetix-bundle</code> for <code>.exki</code>, <code>text/x-kinetix-source</code> for <code>.kix</code>/<code>.ki</code>) and updates the desktop database.",
+            "<b>File Associations (macOS):</b> A <code>Kinetix.app</code> handler bundle is installed with <code>CFBundleDocumentTypes</code> for <code>.kix</code>, <code>.ki</code>, and <code>.exki</code>, plus <code>lsregister</code> refresh."
+        ]
+    },
+    {
         version: "v0.0.6 (12)",
         date: "2026-02-22",
         changes: [
-            "<b>Exhaustiveness Checker (M2.4):</b> Matrix-based compilation pass that guarantees ADT coverage for <code>Option&lt;T&gt;</code> and <code>Result&lt;T,E&gt;</code> in <code>match</code> statements.",
-            "<b>Generic DOS Protection (M2.5):</b> The HM Type Inference engine now tracks unification depth with a strict 32-layer threshold, preventing compilation lockups from recursive instantiations.",
-            "<b>Trait Cycle Detection (M2.5):</b> The Trait Solver now implements an acyclic deterministic graph walker that guarantees trait dependencies do not spin into infinite loops."
+            "<b>Exhaustiveness Checker:</b> Matrix-based compilation pass that guarantees ADT coverage for <code>Option&lt;T&gt;</code> and <code>Result&lt;T,E&gt;</code> in <code>match</code> statements.",
+            "<b>Generic DOS Protection:</b> The HM Type Inference engine now tracks unification depth with a strict 32-layer threshold, preventing compilation lockups from recursive instantiations.",
+            "<b>Trait Cycle Detection:</b> The Trait Solver now implements an acyclic deterministic graph walker that guarantees trait dependencies do not spin into infinite loops.",
+            "<b>Nominal Trait System (M2.3):</b> <code>TraitEnvironment</code> with <code>register_trait</code> and <code>register_impl</code> enforcing coherence rules (Orphan check, no overlapping impls). Deterministic resolution at HIR level.",
+            "<b>HIR Match Lowering:</b> <code>match</code> expressions are now fully lowered from AST to typed HIR with pattern extraction (<code>HirPattern::Variant</code>, <code>HirPattern::Literal</code>, <code>HirPattern::Wildcard</code>).",
+            "<b>Compiler Pipeline Integration:</b> Exhaustiveness checking and trait cycle validation are hooked into both <code>kivm exec</code> and <code>kivm compile</code> commands, running after HM type inference."
         ]
     },
     {
