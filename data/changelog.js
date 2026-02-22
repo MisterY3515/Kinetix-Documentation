@@ -1,5 +1,17 @@
-// CHANGELOG DATA
 App.changelog = [
+    {
+        version: "v0.0.6 (11)",
+        date: "2026-02-22",
+        changes: [
+            "<b>Enum, Trait, Impl Syntax:</b> Added full syntax parsing and AST models for <code>enum</code>, <code>trait</code>, and <code>impl</code> blocks.",
+            "<b>Generic Type Parameters:</b> The lexer and parser now extract parameterized type signatures such as <code>trait Iterator&lt;T&gt;</code> or <code>enum Result&lt;T, E&gt;</code>.",
+            "<b>Try Operator <code>?</code>:</b> Added <code>?</code> as a postfix operator for structured error propagation. Desugared at compile time into <code>match expr { Ok(v) =&gt; v, Err(e) =&gt; return Err(e) }</code>.",
+            "<b>Generic Type System:</b> Types now natively support generic arguments (e.g. <code>Option&lt;int&gt;</code>, <code>Result&lt;str, int&gt;</code>). Type unification recursively matches generic parameters.",
+            "<b>Option&lt;T&gt; Builtin:</b> <code>Option</code>, <code>Some</code>, and <code>None</code> are available as global builtins with polymorphic type inference.",
+            "<b>Result&lt;T,E&gt; Builtin:</b> <code>Result</code>, <code>Ok</code>, and <code>Err</code> are available as global builtins with dual-generic type inference.",
+            "<b>Pattern Matching:</b> Full <code>match</code> expression support with variant destructuring, literal patterns, wildcard (<code>_</code>), and variable bindings."
+        ]
+    },
     {
         version: "v0.0.5 (10)",
         date: "2026-02-21",
