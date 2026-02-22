@@ -1,6 +1,6 @@
 # Kinetix Language Reference for AI Agents (RAG)
 
-**Current Version**: v0.0.6 (Build 11)
+**Current Version**: v0.0.6 (Build 12)
 **Paradigm**: Hybrid Interpretative/Compiled. Statically (optionally) typed. 
 **Compiler Pipeline**: Source (`.kix`) -> AST (Arena-Allocated) -> 16-bit Bytecode (`.exki`) -> KiVM Execution OR LLVM Backend JIT/Native.
 

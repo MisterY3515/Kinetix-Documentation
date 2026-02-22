@@ -1,5 +1,14 @@
 App.changelog = [
     {
+        version: "v0.0.6 (12)",
+        date: "2026-02-22",
+        changes: [
+            "<b>Exhaustiveness Checker (M2.4):</b> Matrix-based compilation pass that guarantees ADT coverage for <code>Option&lt;T&gt;</code> and <code>Result&lt;T,E&gt;</code> in <code>match</code> statements.",
+            "<b>Generic DOS Protection (M2.5):</b> The HM Type Inference engine now tracks unification depth with a strict 32-layer threshold, preventing compilation lockups from recursive instantiations.",
+            "<b>Trait Cycle Detection (M2.5):</b> The Trait Solver now implements an acyclic deterministic graph walker that guarantees trait dependencies do not spin into infinite loops."
+        ]
+    },
+    {
         version: "v0.0.6 (11)",
         date: "2026-02-22",
         changes: [
