@@ -1,5 +1,19 @@
 App.changelog = [
     {
+        version: "v0.0.7 (16)",
+        date: "2026-02-23",
+        changes: [
+            "<b>AST & Parser Aggregates:</b> Extended the core syntax tree to natively support `StructLiteral` definitions (<code>Name { field: value }</code>) ensuring O(n) parsing complexity.",
+            "<b>Parser Ambiguity Resolution:</b> Implemented stateful CFG lock constraints (<code>allow_struct_literal</code>) into the Parser to statically resolve syntax tree ambiguity between struct definitions and generic code blocks in <code>if</code>, <code>match</code>, <code>while</code>, and <code>for</code> expressions.",
+            "<b>Type Normalization:</b> Hooked <code>StructLiteral</code> AST nodes down to <code>Type::Custom</code> normalization variants via a formal traversal mapping.",
+            "<b>MIR Aggregate Lowering:</b> Built the <code>RValue::Aggregate</code> block instruction to naturally flatten nested struct expressions directly into ordered linear operations.",
+            "<b>Borrow Graph Extension:</b> Taught the Borrow Checker to strictly enforce <i>Move</i> semantics inside struct initializations, successfully preventing use-after-move vulnerabilities at instantiation boundaries.",
+            "<b>Drop Graph Integrity:</b> Mathematically certified via <code>drop_verify.rs</code> that Custom structure initialization generates structurally sound Reverse-Drop execution nodes automatically.",
+            "<b>SSA Validation:</b> Placed a <code>ssa_validate.rs</code> integrity auditor immediately after Borrow checking to enforce atomic allocations and prohibit invalid field-splitting optimizations on nominal structs.",
+            "<b>LLVM Backend Replay:</b> Implemented native machine code emission for Structs in <code>llvm_codegen.rs</code> mapping Kinetix linearly-aligned structs safely to LLVM Opaque <code>StructType</code> <code>alloca</code> allocations."
+        ]
+    },
+    {
         version: "v0.0.6 (15)",
         date: "2026-02-23",
         changes: [

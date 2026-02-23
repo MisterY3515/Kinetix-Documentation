@@ -19,7 +19,7 @@ App.register('intro', {
 
 <div class="note-box">
     <span class="callout-title">Development Status</span>
-    Kinetix is under active development (currently v0.0.6, Build 15). Some features documented here may be partially implemented or planned for future releases. Check the <a href="#changelog">Changelog</a> for the latest updates.
+    Kinetix is under active development (currently v0.0.7, Build 16). Some features documented here may be partially implemented or planned for future releases. Check the <a href="#changelog">Changelog</a> for the latest updates.
 </div>
 
 <h2>Installation</h2>
