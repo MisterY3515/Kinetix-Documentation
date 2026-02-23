@@ -1,5 +1,16 @@
 App.changelog = [
     {
+        version: "v0.0.6 (15)",
+        date: "2026-02-23",
+        changes: [
+            "<b>Compiler: Wildcard Pattern Fix:</b> Resolved an issue in <code>symbol.rs</code> where the <code>_</code> wildcard in <code>match</code> statements was incorrectly processed as an undeclared standard identifier instead of skipping symbol bindings.",
+            "<b>Compiler: Generic Type Variable Survival Fix:</b> Fixed a critical validation error in <code>types.rs</code> where generic functions returning unresolved polymorphic types (e.g. <code>println</code> returning <code>Void</code> instead of resolving a free <code>Type::Var</code>) caused post-monomorphization Panics. Added <code>apply_default()</code> to force orphaned Type::Vars to Void during MIR generation.",
+            "<b>VM & Parser: Function Call Lowering Fix:</b> Identified and resolved a bug in <code>mir.rs</code> where <code>HirExprKind::Call</code> and <code>ArrayLiteral</code> were falling through to a null return rather than properly lowering to <code>RValue::Call</code> and <code>RValue::Array</code>. The Borrow Checker now correctly tracks ownership paths through function arguments.",
+            "<b>Borrow Checker: Linear Type Use-After-Move Fix:</b> Validated that the previous <code>mir.rs</code> fix correctly restores compile-time error detection for <i>use-after-move</i> constraint violations (e.g., passing a moved resource into a function now correctly fails the build).",
+            "<b>Test Suite Reorganization:</b> Consolidated fragmented legacy test files into single unified <code>test_features.kix</code> and <code>test_errors.kix</code> files for efficient compiler regression testing."
+        ]
+    },
+    {
         version: "v0.0.6 (14)",
         date: "2026-02-22",
         changes: [
