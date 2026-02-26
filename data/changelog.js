@@ -1,5 +1,21 @@
 App.changelog = [
     {
+        version: "v0.0.7 (17)",
+        date: "2026-02-26",
+        changes: [
+            "<b>Reactive Core AST:</b> Introduced <code>state</code>, <code>computed</code>, and <code>effect</code> reserved keywords to the Lexer, Parser and full AST. State variables are implicitly mutable; Computed values are immutable. Effects declare reactive side-effect blocks with explicit dependency lists.",
+            "<b>Reactive Dependency Graph:</b> New <code>reactive.rs</code> module with static dependency resolution. Builds a DAG from <code>state</code>→<code>computed</code> references via HIR traversal. Topological sort (Kahn's algorithm) produces deterministic update order. Cycle detection enabled at compile-time.",
+            "<b>Reactive VM Frame Scheduler:</b> Implemented the Single-Threaded Tick Engine inside KiVM. The VM identifies <code>SetState</code> and <code>UpdateState</code> mutations and triggers an internal Frame Replay without Garbage Collection overhead.",
+            "<b>Reactive Bytecode Lowering:</b> <code>state</code>, <code>computed</code>, and <code>effect</code> statements now compile to dedicated VM bytecode. Computed values are wrapped in anonymous closure functions. Effect bodies are compiled as thunk closures with dependency arrays.",
+            "<b>New Reactive Opcodes:</b> Added <code>SetState</code>, <code>UpdateState</code>, <code>InitComputed</code>, and <code>InitEffect</code> (opcode 47) to the instruction set.",
+            "<b>HIR Exhaustiveness Extension:</b> The exhaustiveness checker (<code>exhaustiveness.rs</code>) now traverses <code>State</code>, <code>Computed</code>, and <code>Effect</code> nodes when validating pattern coverage in nested match expressions.",
+            "<b>Type Normalization Extension:</b> The type normalization pass now correctly walks through reactive statement nodes, normalizing inner expression and body types.",
+            "<b>Struct Instantiation Benchmark (O(n)):</b> Passed 10,000 sequenced struct allocation stress tests under <code>40ms</code> verifying no exponential compilation deterioration.",
+            "<b>Compiler Pipeline Cleanup:</b> Removed duplicate match arms for <code>State</code>/<code>Computed</code> in <code>compiler.rs</code> and <code>hir.rs</code>. Fixed <code>benchmarks.rs</code> compile signature after reactive graph parameter addition.",
+            "<b>CLI Version Command Fix:</b> Removed static compilation version strings inside the Kinetix CLI <code>main.rs</code> executable, implementing dynamic cross-evaluation against Cargo metadata and internal build macros to prevent version divergence."
+        ]
+    },
+    {
         version: "v0.0.7 (16)",
         date: "2026-02-23",
         changes: [
@@ -55,7 +71,7 @@ App.changelog = [
             "<b>Exhaustiveness Checker:</b> Matrix-based compilation pass that guarantees ADT coverage for <code>Option&lt;T&gt;</code> and <code>Result&lt;T,E&gt;</code> in <code>match</code> statements.",
             "<b>Generic DOS Protection:</b> The HM Type Inference engine now tracks unification depth with a strict 32-layer threshold, preventing compilation lockups from recursive instantiations.",
             "<b>Trait Cycle Detection:</b> The Trait Solver now implements an acyclic deterministic graph walker that guarantees trait dependencies do not spin into infinite loops.",
-            "<b>Nominal Trait System (M2.3):</b> <code>TraitEnvironment</code> with <code>register_trait</code> and <code>register_impl</code> enforcing coherence rules (Orphan check, no overlapping impls). Deterministic resolution at HIR level.",
+            "<b>Nominal Trait System:</b> <code>TraitEnvironment</code> with <code>register_trait</code> and <code>register_impl</code> enforcing coherence rules (Orphan check, no overlapping impls). Deterministic resolution at HIR level.",
             "<b>HIR Match Lowering:</b> <code>match</code> expressions are now fully lowered from AST to typed HIR with pattern extraction (<code>HirPattern::Variant</code>, <code>HirPattern::Literal</code>, <code>HirPattern::Wildcard</code>).",
             "<b>Compiler Pipeline Integration:</b> Exhaustiveness checking and trait cycle validation are hooked into both <code>kivm exec</code> and <code>kivm compile</code> commands, running after HM type inference."
         ]

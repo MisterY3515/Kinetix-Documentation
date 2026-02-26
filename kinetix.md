@@ -1,6 +1,6 @@
 # Kinetix Language Reference for AI Agents (RAG)
 
-**Current Version**: v0.0.7 (Build 16)
+**Current Version**: v0.0.7 (Build 17)
 **Paradigm**: Hybrid Interpretative/Compiled. Statically (optionally) typed. 
 **Compiler Pipeline**: Source (`.kix`) -> AST (Arena-Allocated) -> 16-bit Bytecode (`.exki`) -> KiVM Execution OR LLVM Backend JIT/Native.
 
@@ -11,6 +11,12 @@ Memory is managed without a GC via Linear Types (Move semantics).
 - `let name = ...` (Immutable)
 - `mut name = ...` (Mutable)
 - Explicit types (optional): `let age: int = 30`
+
+### Reactive Variables (Phase 3B)
+Part of the deterministic Reactive Core (Zero GC, no Virtual DOM).
+- `state counter = 0` — Mutable reactive variable with internal generational versioning.
+- `computed total = counter * 2` — Immutable derived value, auto-cached and re-evaluated only when dependencies change.
+- Explicit types (optional): `state x: int = 0`, `computed y: int = x + 1`
 
 ### Types
 - `int` (i64), `float` (f64), `bool`, `string`, `null`
