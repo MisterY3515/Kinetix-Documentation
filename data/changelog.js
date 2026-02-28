@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.7 (20)",
+        date: "2026-02-28",
+        changes: [
+            "<b>HIR Integrity Validation:</b> Added structural checking pass `hir_validate` to verify duplicate function parameters and detect unreachable statements after `return`, `break`, or `continue`.",
+            "<b>MIR/SSA Integrity Enhancements:</b> Upgraded `ssa_validate` to perform robust use-before-assign protection for all operands, verify terminator integrity including valid `Return` generation, and detect orphan/unreachable blocks.",
+            "<b>Deterministic Layout Hashing:</b> Extended the custom FNV-1a structural hashing algorithm completely into the High-level IR via `hash_hir_program`, cementing build stabilization.",
+            "<b>Pipeline Integration:</b> Firmly wired the full validation suite into both compilation sequences (`Exec` / `Compile`), ensuring all executables fulfill strict compiler rules before LLVM code generation."
+        ]
+    },
+    {
         version: "v0.0.7 (19)",
         date: "2026-02-28",
         changes: [
