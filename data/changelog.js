@@ -1,5 +1,14 @@
 App.changelog = [
     {
+        version: "v0.0.7 (19)",
+        date: "2026-02-28",
+        changes: [
+            "<b>Panic Removal (kivm):</b> Replaced lethal unwraps on mutex locks in `system.rs` and JSON parsers in `data.rs` with safe `Result<T, Err>` propagations to prevent runtime crashes.",
+            "<b>Compile-Time Result Enforcement:</b> The compiler (kicomp) now intercepts fallible built-in invocations (like `data.read_text`, `net.get`) and statically constraints their return type to `Result<T, String>`, preventing blind assignments and throwing a `Type Mismatch` if error paths are unhandled.",
+            "<b>Capability IR and Sandbox Pass:</b> Added a new post-HIR compiler pass (`CapabilityValidator`) that checks for explicit system permissions (`FsRead`, `FsWrite`, `NetAccess`, `SysInfo`). Kinetix Scripts lacking credentials for protected OS syscalls will be immediately rejected at compile-time."
+        ]
+    },
+    {
         version: "v0.0.7 (18)",
         date: "2026-02-28",
         changes: [
