@@ -111,7 +111,13 @@ let ref = &mut buffer   // Mutable borrow
   Type Inference (Hindley-Milner)
     │
     ▼
+  Reactive Graph Extraction ← Topological Sort (State/Computed Analysis)
+    │
+    ▼
   MIR Lowering  ← Move / Copy / Borrow decisions happen here
+    │
+    ▼
+  SSA Validation ← Formal invariants certification
     │
     ▼
   Borrow Checker ← Validates ownership rules
@@ -152,5 +158,23 @@ let ref = &mut buffer   // Mutable borrow
     <tr><td><strong>Mutable Borrow (&amp;mut)</strong></td><td>Temporary exclusive write access</td></tr>
     <tr><td><strong>Drop</strong></td><td>Automatic memory cleanup when owner goes out of scope</td></tr>
 </table>
+
+<h2>Component Ownership Model</h2>
+<p>In Phase 3, Kinetix extends the ownership model into the GUI/Reactive sphere. When defining a <strong>Class</strong> (or Component), its methods strictly follow linear value enforcement:</p>
+<pre><code>class Button {
+    // Methods taking '&self' can read instance state safely
+    fn render(&self) { ... }
+
+    // Methods taking '&mut self' can modify local state exclusively
+    fn click(&mut self) { ... }
+    
+    // Consuming methods taking 'self' (by value) DESTROY the component
+    // after execution. This is enforced by MIR (Operand::Move).
+    fn destroy(self) {
+        println("Button gone forever!")
+    }
+}
+</code></pre>
+<p>By enforcing <code>self</code> as a linear value, UI components can statically guarantee that they cannot be interacted with once they are unmounted or explicitly dropped, preventing use-after-free bugs in the UI tree.</p>
     `
 });

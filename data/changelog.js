@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.7 (22)",
+        date: "2026-02-28",
+        changes: [
+            "<b>Self as Linear Value:</b> Enforced explicit moves for <code>self</code> in consuming methods within MIR, guaranteeing safe component destruction in UI paradigms.",
+            "<b>SSA Reactive Integrity:</b> Formally verified through <code>ssa_validate.rs</code> that declarative reactive nodes (State/Computed/Effect) are structurally isolated from the canonical SSA graph.",
+            "<b>Performance Optimizations:</b> Implemented <code>RefCell</code> caching for Trait Resolution to bypass duplicate lookups, ensuring O(1) checks during type normalization.",
+            "<b>Phase 3 Final Closure:</b> Finalized the OOP & Reactive Engine milestones for version 0.0.7."
+        ]
+    },
+    {
         version: "v0.0.7 (21)",
         date: "2026-02-28",
         changes: [
