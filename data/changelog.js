@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.7 (21)",
+        date: "2026-02-28",
+        changes: [
+            "<b>Safe Default Initialization:</b> Variables declared with a type hint but no explicit value (<code>let x: int;</code>) are now automatically initialized to their type's zero-value (0, false, \"\"). This prevents uninitialized-variable bugs at the parser level.",
+            "<b>Global Allocation Audit:</b> The KiVM runtime now tracks all heap allocations (strings, arrays, maps, ranges, class instances) via a new <code>MemoryStats</code> struct. Use <code>--audit</code> flag to print the allocation report after execution.",
+            "<b>Formal Invariants Certification:</b> When the <code>--audit</code> flag is passed, the compiler prints <code>[✓] Formal Invariants Certified</code> after all Build 17-20 validation passes complete successfully.",
+            "<b>Phase 3 Test Suite:</b> Added <code>tests/phase3_oop.kix</code> covering default initialization, struct creation with field access, string concatenation, arrays, and reactive state/computed/effect."
+        ]
+    },
+    {
         version: "v0.0.7 (20)",
         date: "2026-02-28",
         changes: [
