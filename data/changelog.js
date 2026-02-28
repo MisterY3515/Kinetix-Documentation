@@ -1,5 +1,16 @@
 App.changelog = [
     {
+        version: "v0.0.7 (18)",
+        date: "2026-02-28",
+        changes: [
+            "<b>OOP Method Resolving Pass:</b> Added a post-TypeChecker static dispatch pass (<code>resolve_method_calls</code>) that transforms instance method calls into static class calls with <code>&mut self</code> injection.",
+            "<b>VM OOP Runtime Dispatch:</b> Implemented <code>Opcode::LoadMethod</code> to resolve methods dynamically on the Virtual Machine via a hidden <code>__class__</code> field on struct allocations.",
+            "<b>Deterministic IR Hashing:</b> Replaced Rust's default randomized Hasher with a custom 64-bit FNV-1a <code>DeterministicHasher</code> for MIR nodes and Types, guaranteeing cross-compilation stability.",
+            "<b>Monomorphization Limits (DOS Guard):</b> Added an explicit bounds checker capping generic instantiations (<code>MAX_INSTANTIATIONS = 2048</code>) to prevent combinatorial explosion compile-time attacks.",
+            "<b>Compile-Time Regression Guard:</b> Extended the test suite with a strict performance constraint, ensuring that HM Inference and Monomorphization scaling remains strictly O(n) under 500ms."
+        ]
+    },
+    {
         version: "v0.0.7 (17)",
         date: "2026-02-26",
         changes: [
