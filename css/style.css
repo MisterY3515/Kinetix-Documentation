@@ -1026,13 +1026,15 @@ pre code {
         position: fixed;
         top: 0;
         left: 0;
-        height: 100vh;
+        height: 100dvh;
+        /* dynamic viewport height to prevent UI bar cropping */
         width: 300px;
         min-width: 300px;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 15;
         box-shadow: none;
+        padding-bottom: env(safe-area-inset-bottom, 24px);
     }
 
     #sidebar.open {
@@ -1087,48 +1089,48 @@ pre code {
     .detail-box {
         padding: 16px;
     }
+}
 
-    /* Changelog Styles */
-    .changelog-entry {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 30px;
-    }
+/* Changelog Styles (Globalized) */
+.changelog-entry {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
 
-    .changelog-entry h2 {
-        margin-top: 0;
-        color: var(--accent);
-        font-size: 1.5em;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-    }
+.changelog-entry h2 {
+    margin-top: 0;
+    color: var(--accent);
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
 
-    .changelog-entry ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
+.changelog-entry ul {
+    list-style-type: none;
+    padding-left: 0;
+}
 
-    .changelog-entry li {
-        position: relative;
-        padding-left: 20px;
-        margin-bottom: 8px;
-        line-height: 1.6;
-    }
+.changelog-entry li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
 
-    .changelog-entry li::before {
-        content: "•";
-        color: var(--accent);
-        font-weight: bold;
-        position: absolute;
-        left: 0;
-    }
+.changelog-entry li::before {
+    content: "•";
+    color: var(--accent);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
 
-    .method-name {
-        font-size: 15px;
-    }
+.method-name {
+    font-size: 15px;
 }
 
 /* ===== Responsive: Small Phone (≤ 480px) ===== */
