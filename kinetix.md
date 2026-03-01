@@ -68,10 +68,12 @@ Global functions mapped to modules (use `module.func(...)` or global wrappers).
 - `math.dot(a, b)`, `math.cross(a, b)`, `math.length(v)`, `math.distance(a, b)`, `math.normalize(v)`
 
 ### System & Environment
-- `System.time()` / `time.now()`, `time.ticks()`, `time.sleep(ms)`
+- `System.time()` / `time.now()`, `time.ticks()`, `time.sleep(ms)` / `system.thread.sleep(ms)`
 - `env.cwd()`, `env.set_cwd(path)`, `env.user()`, `env.hostname()`, `env.get(key)`, `env.set(k, v)`, `env.args()`
-- `System.shell(cmd)` - execute bash cmd
-- `System.cpu_usage()`, `System.memory_free()`, `System.uptime()`, `System.os_name()`
+- `System.shell(cmd)` - execute bash cmd (also `system.exec(cmd)` returning Output map)
+- `system.thread.spawn(fn, ...args)` -> returns execution thread handle id map `{ok: id}`
+- `system.thread.join(id)` -> blocks and returns thread result map `{ok: res}` or `{err: msg}`
+- `System.cpu_usage()`, `System.memory_free()`, `System.uptime()`, `system.os.name()`, `system.os.arch()`, `system.os.isWindows()`
 - `System.clipboard_set(s)`, `System.clipboard_get()`, `System.gc()`
 
 ### Term (Terminal UI)
