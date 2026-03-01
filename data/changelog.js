@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.7 (23)",
+        date: "2026-03-01",
+        changes: [
+            "<b>OS Detection Runtime:</b> Added <code>system.os.isWindows()</code>, <code>system.os.isLinux()</code>, and <code>system.os.isMac()</code> built-in functions that return the host OS at runtime via Rust <code>cfg!</code> macros.",
+            "<b>Multi-Level MemberAccess:</b> The bytecode compiler (<code>compiler.rs</code>) now supports multi-level dot-access chains (e.g. <code>system.os.isWindows()</code>) for built-in module calls, flattening them into a single global function name.",
+            "<b>Compile-Time OS Branch Elimination:</b> The HIR lowering phase (<code>hir.rs</code>) now performs constant folding on <code>if system.os.is*()</code> conditions, statically eliminating dead OS-specific branches before MIR generation.",
+            "<b>MIR Pipeline Fix:</b> Resolved persistent <code>mir.rs:399</code> panic caused by unresolved <code>MethodCall</code> nodes reaching MIR. Built-in module calls are now correctly flattened to <code>Call</code> expressions in both HIR lowering and Type Normalization passes."
+        ]
+    },
+    {
         version: "v0.0.7 (22)",
         date: "2026-02-28",
         changes: [
