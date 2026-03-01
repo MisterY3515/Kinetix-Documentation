@@ -92,5 +92,5 @@ Global functions mapped to modules (use `module.func(...)` or global wrappers).
 - `#include "file.kix"` : Import another Kinetix file.
 - `#version 2` : Ensure codebase build version is >= 2.
 
-## 6. Known Limitations (Build 9)
-- LLVM native execution (`--native` and JIT) is experimental and only fully supports primitives (`int`, `float`, `bool`), conditionals (`if`/`while`), and basic `print`. Full stdlib (Strings, Arrays) is running primarily under the Bytecode VM until Build 9/10 completes the LLVM bindings.
+## 6. Known Limitations (Build 24)
+- LLVM native execution (`--native` and JIT) is experimental and only fully supports primitives (`int`, `float`, `bool`), conditionals (`if`/`while`), and basic `print`. Full stdlib (Strings, Arrays) is running primarily under the Bytecode VM until Build 25/26 completes the LLVM bindings.
