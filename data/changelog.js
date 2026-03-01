@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.8 (24)",
+        date: "2026-03-01",
+        changes: [
+            "<b>Capability Validator — Full Syscall Coverage:</b> Extended the compile-time <code>CapabilityValidator</code> sandbox pass to enforce capability checks on all Build 23 OS Abstraction Layer functions. New <code>ThreadControl</code> capability gates <code>system.thread.spawn/join/sleep</code> and <code>system.defer</code>.",
+            "<b>Flattened Call Interception:</b> The validator now intercepts multi-level global function calls (<code>system.os.name</code>, <code>system.exec</code>, etc.) that the HIR flattens into direct <code>Identifier</code> calls, closing the sandbox gap for all <code>system.*</code> endpoints.",
+            "<b>OsExecute Gate:</b> <code>system.exec()</code> now requires the <code>OsExecute</code> capability. Programs without this grant are rejected at compile-time.",
+            "<b>SysInfo Gate:</b> <code>system.os.name()</code>, <code>system.os.arch()</code>, and all <code>system.os.is*()</code> detection calls now require the <code>SysInfo</code> capability."
+        ]
+    },
+    {
         version: "v0.0.8 (23)",
         date: "2026-03-01",
         changes: [
