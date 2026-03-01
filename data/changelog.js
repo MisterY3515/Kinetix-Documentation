@@ -1,12 +1,28 @@
 App.changelog = [
     {
-        version: "v0.0.7 (23)",
+        version: "v0.0.8 (24)",
         date: "2026-03-01",
         changes: [
+            "<b>Capability Validator — Full Syscall Coverage:</b> Extended the compile-time <code>CapabilityValidator</code> sandbox pass to enforce capability checks on all Build 23 OS Abstraction Layer functions. New <code>ThreadControl</code> capability gates <code>system.thread.spawn/join/sleep</code> and <code>system.defer</code>.",
+            "<b>Flattened Call Interception:</b> The validator now intercepts multi-level global function calls (<code>system.os.name</code>, <code>system.exec</code>, etc.) that the HIR flattens into direct <code>Identifier</code> calls, closing the sandbox gap for all <code>system.*</code> endpoints.",
+            "<b>OsExecute Gate:</b> <code>system.exec()</code> now requires the <code>OsExecute</code> capability. Programs without this grant are rejected at compile-time.",
+            "<b>SysInfo Gate:</b> <code>system.os.name()</code>, <code>system.os.arch()</code>, and all <code>system.os.is*()</code> detection calls now require the <code>SysInfo</code> capability."
+        ]
+    },
+    {
+        version: "v0.0.8 (23)",
+        date: "2026-03-01",
+        changes: [
+            "<b>Self as Linear Value:</b> Enforced explicit moves for <code>self</code> in consuming methods within MIR, guaranteeing safe component destruction in UI paradigms.",
+            "<b>SSA Reactive Integrity:</b> Formally verified through <code>ssa_validate.rs</code> that declarative reactive nodes (State/Computed/Effect) are structurally isolated from the canonical SSA graph.",
+            "<b>Performance Optimizations:</b> Implemented <code>RefCell</code> caching for Trait Resolution to bypass duplicate lookups, ensuring O(1) checks during type normalization.",
+            "<b>Phase 3 Final Closure:</b> Finalized the OOP & Reactive Engine milestones for version 0.0.7.",
             "<b>OS Detection Runtime:</b> Added <code>system.os.isWindows()</code>, <code>system.os.isLinux()</code>, and <code>system.os.isMac()</code> built-in functions that return the host OS at runtime via Rust <code>cfg!</code> macros.",
             "<b>Multi-Level MemberAccess:</b> The bytecode compiler (<code>compiler.rs</code>) now supports multi-level dot-access chains (e.g. <code>system.os.isWindows()</code>) for built-in module calls, flattening them into a single global function name.",
             "<b>Compile-Time OS Branch Elimination:</b> The HIR lowering phase (<code>hir.rs</code>) now performs constant folding on <code>if system.os.is*()</code> conditions, statically eliminating dead OS-specific branches before MIR generation.",
-            "<b>MIR Pipeline Fix:</b> Resolved persistent <code>mir.rs:399</code> panic caused by unresolved <code>MethodCall</code> nodes reaching MIR. Built-in module calls are now correctly flattened to <code>Call</code> expressions in both HIR lowering and Type Normalization passes."
+            "<b>MIR Pipeline Fix:</b> Resolved persistent <code>mir.rs:399</code> panic caused by unresolved <code>MethodCall</code> nodes reaching MIR. Built-in module calls are now correctly flattened to <code>Call</code> expressions in both HIR lowering and Type Normalization passes.",
+            "<b>Static VTable OOP Dispatch:</b> Implemented a compile-time static <code>VTable</code> builder executed after monomorphization. Replaced the runtime <code>LoadMethod</code> loop traversing string IDs with a direct, O(1) constant index lookup to bound method execution mapping.",
+            "<b>Zero-Panic OS Abstraction Layer:</b> Vastly expanded the <code>system.</code> namespace introducing <code>system.os.name()</code>, <code>system.os.arch()</code>, <code>system.exec()</code>, <code>system.thread.sleep()</code>. All OS endpoints are guaranteed panic-free, safely surfacing OS-level exceptions through the Kinetix <code>Result&lt;T,E&gt;</code> generic enumeration."
         ]
     },
     {
