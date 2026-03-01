@@ -1,5 +1,14 @@
 App.changelog = [
     {
+        version: "v0.0.8 (25)",
+        date: "2026-03-01",
+        changes: [
+            "<b>Ownership-Safe Native Threading:</b> Successfully implemented <code>system.thread.spawn</code> and <code>system.thread.join</code>. Threads are now backed natively by the Rust <code>std::thread</code> model. Kinetix utilizes a Global Lazy Thread Registry to map linear IDs to raw <code>JoinHandle</code>s without exposing native pointers.",
+            "<b>Deep Graph Value Climbing:</b> Thanks to Kinetix's functional variable architecture, any parameters passed to a spawned thread are intrinsically deep-copied without any shared reference counts (e.g., no <code>Rc</code> or <code>RefCell</code> wrapping collections). This completely eradicates cross-thread data aliasing natively.",
+            "<b>Multi-VM Isolation:</b> Every thread executes within its newly initialized independent <code>VM</code>, sharing only a cloned reference to the compiled multi-block Program bytecode."
+        ]
+    },
+    {
         version: "v0.0.8 (24)",
         date: "2026-03-01",
         changes: [
