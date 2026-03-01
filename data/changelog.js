@@ -10,7 +10,9 @@ App.changelog = [
             "<b>OS Detection Runtime:</b> Added <code>system.os.isWindows()</code>, <code>system.os.isLinux()</code>, and <code>system.os.isMac()</code> built-in functions that return the host OS at runtime via Rust <code>cfg!</code> macros.",
             "<b>Multi-Level MemberAccess:</b> The bytecode compiler (<code>compiler.rs</code>) now supports multi-level dot-access chains (e.g. <code>system.os.isWindows()</code>) for built-in module calls, flattening them into a single global function name.",
             "<b>Compile-Time OS Branch Elimination:</b> The HIR lowering phase (<code>hir.rs</code>) now performs constant folding on <code>if system.os.is*()</code> conditions, statically eliminating dead OS-specific branches before MIR generation.",
-            "<b>MIR Pipeline Fix:</b> Resolved persistent <code>mir.rs:399</code> panic caused by unresolved <code>MethodCall</code> nodes reaching MIR. Built-in module calls are now correctly flattened to <code>Call</code> expressions in both HIR lowering and Type Normalization passes."
+            "<b>MIR Pipeline Fix:</b> Resolved persistent <code>mir.rs:399</code> panic caused by unresolved <code>MethodCall</code> nodes reaching MIR. Built-in module calls are now correctly flattened to <code>Call</code> expressions in both HIR lowering and Type Normalization passes.",
+            "<b>Static VTable OOP Dispatch:</b> Implemented a compile-time static <code>VTable</code> builder executed after monomorphization. Replaced the runtime <code>LoadMethod</code> loop traversing string IDs with a direct, O(1) constant index lookup to bound method execution mapping.",
+            "<b>Zero-Panic OS Abstraction Layer:</b> Vastly expanded the <code>system.</code> namespace introducing <code>system.os.name()</code>, <code>system.os.arch()</code>, <code>system.exec()</code>, <code>system.thread.sleep()</code>. All OS endpoints are guaranteed panic-free, safely surfacing OS-level exceptions through the Kinetix <code>Result&lt;T,E&gt;</code> generic enumeration."
         ]
     },
     {
