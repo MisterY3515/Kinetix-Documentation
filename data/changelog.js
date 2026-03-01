@@ -1,8 +1,12 @@
 App.changelog = [
     {
-        version: "v0.0.7 (23)",
+        version: "v0.0.8 (23)",
         date: "2026-03-01",
         changes: [
+            "<b>Self as Linear Value:</b> Enforced explicit moves for <code>self</code> in consuming methods within MIR, guaranteeing safe component destruction in UI paradigms.",
+            "<b>SSA Reactive Integrity:</b> Formally verified through <code>ssa_validate.rs</code> that declarative reactive nodes (State/Computed/Effect) are structurally isolated from the canonical SSA graph.",
+            "<b>Performance Optimizations:</b> Implemented <code>RefCell</code> caching for Trait Resolution to bypass duplicate lookups, ensuring O(1) checks during type normalization.",
+            "<b>Phase 3 Final Closure:</b> Finalized the OOP & Reactive Engine milestones for version 0.0.7.",
             "<b>OS Detection Runtime:</b> Added <code>system.os.isWindows()</code>, <code>system.os.isLinux()</code>, and <code>system.os.isMac()</code> built-in functions that return the host OS at runtime via Rust <code>cfg!</code> macros.",
             "<b>Multi-Level MemberAccess:</b> The bytecode compiler (<code>compiler.rs</code>) now supports multi-level dot-access chains (e.g. <code>system.os.isWindows()</code>) for built-in module calls, flattening them into a single global function name.",
             "<b>Compile-Time OS Branch Elimination:</b> The HIR lowering phase (<code>hir.rs</code>) now performs constant folding on <code>if system.os.is*()</code> conditions, statically eliminating dead OS-specific branches before MIR generation.",
