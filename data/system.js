@@ -38,7 +38,7 @@ let cores = system.get_hardware_info().cpu_cores`,
         { name: 'thread.sleep', ret: 'void', params: '(ms: int)', desc: 'Sleeps the current thread for N milliseconds.', details: 'Replaces legacy system.sleep. Blocks hardware thread.', example: 'system.thread.sleep(1000)', implemented: 'v0.0.8 (23)' },
         { name: 'thread.spawn', ret: 'Thread', params: '(fn)', desc: 'Spawns a new Kinetix thread natively, executing the parameter closure isolated. Built-in Ownership-Safe deep copy prevents any data races natively.', details: 'Fully implemented and concurrent.', example: 'system.thread.spawn(fn() { ... })', implemented: 'v0.0.8 (25)' },
         { name: 'thread.join', ret: 'Result', params: '(thread)', desc: 'Waits for the spawned thread to finish execution, returning its result.', details: 'Works in conjunction with thread.spawn.', example: 'system.thread.join(t)', implemented: 'v0.0.8 (25)' },
-        { name: 'defer', ret: 'void', params: '(fn)', desc: 'Schedules a closure to execute exactly at the end of the current scope block.', details: 'Placeholder for Drop Graph RAII integration.', example: 'system.defer(fn() { println("Closing") })', implemented: 'v0.0.8 (23)' }
+        { name: 'defer', ret: 'void', params: '(fn)', desc: 'Schedules a closure to execute at the end of the current scope block in LIFO order.', details: 'Fully implemented. Deferred closures fire on frame pop, mirroring Go defer / Rust Drop semantics.', example: 'system.defer(fn() { println("Closing") })', implemented: 'v0.0.8 (26)' }
     ],
     properties: [
         { name: 'version', type: 'String', default: '"0.1.0"', desc: 'Kinetix Runtime Version.' },
