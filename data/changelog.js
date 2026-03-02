@@ -1,5 +1,14 @@
 App.changelog = [
     {
+        version: "v0.0.8 (26)",
+        date: "2026-03-01",
+        changes: [
+            "<b>system.defer() RAII Implementation:</b> Fully implemented <code>system.defer(fn)</code> with LIFO (last-in, first-out) execution ordering. Deferred closures are stored per-<code>CallFrame</code> and fire automatically when the function scope exits, mirroring Rust's <code>Drop</code> and Go's <code>defer</code> semantics.",
+            "<b>Syscall Isolation Audit:</b> Extended the <code>CapabilityValidator</code> to cover all remaining BUILTIN_NAMES endpoints: <code>env.get</code>, <code>env.set</code>, <code>env.args</code>, <code>System.time</code>, <code>time.now</code>, <code>time.ticks</code>, <code>time.sleep</code>. The compile-time sandbox now has 100% coverage over the entire syscall surface.",
+            "<b>Static Syscall Map:</b> Added <code>static_syscall_map()</code> public function in <code>capability.rs</code> exporting all syscall→capability mappings for documentation and tooling."
+        ]
+    },
+    {
         version: "v0.0.8 (25)",
         date: "2026-03-01",
         changes: [
