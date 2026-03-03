@@ -1,5 +1,14 @@
 App.changelog = [
     {
+        version: "v0.0.8 (27)",
+        date: "2026-03-02",
+        changes: [
+            "<b>Holy-Shell Syntax:</b> Introduced optional parentheses for function calls (e.g., <code>print \"Hello\"</code>, <code>let x = len [1, 2, 3]</code>). The parser now intelligently handles space-separated arguments without ambiguity, streamlining shell-like scripts.",
+            "<b>Backticks Operator:</b> Added native support for backtick strings (e.g., <code>`ls -la`</code>). The compiler seamlessly desugars these into <code>system.exec(\"ls -la\")</code> calls, governed by the Capability Sandbox.",
+            "<b>Parser Intelligence:</b> Resolved complex LL(1) ambiguities between list literals and index expressions by implementing space-tracking within the Lexer, ensuring robust structural parsing."
+        ]
+    },
+    {
         version: "v0.0.8 (26)",
         date: "2026-03-01",
         changes: [
