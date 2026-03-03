@@ -1,5 +1,16 @@
 App.changelog = [
     {
+        version: "v0.0.9 (28)",
+        date: "2026-03-03",
+        changes: [
+            "<b>TCP Networking Core:</b> Implemented <code>net.tcp.connect</code>, <code>net.tcp.listen</code>, <code>net.tcp.accept</code>, <code>net.tcp.send</code>, <code>net.tcp.recv</code>, <code>net.tcp.recvLine</code>. Connections are managed via a Global Connection Registry with linear IDs — no raw pointers are exposed to the language layer.",
+            "<b>TCP Options:</b> Added <code>net.tcp.setTimeout</code>, <code>net.tcp.setNoDelay</code>, <code>net.tcp.shutdown</code>, <code>net.tcp.close</code>, <code>net.tcp.localAddr</code>, <code>net.tcp.peerAddr</code>.",
+            "<b>UDP Datagram Module:</b> Implemented <code>net.udp.bind</code>, <code>net.udp.send</code>, <code>net.udp.recv</code>, <code>net.udp.setTimeout</code>, <code>net.udp.close</code>. Stateless datagram handling with ownership-safe socket registry.",
+            "<b>HTTP Improvements:</b> Existing <code>net.get</code>/<code>net.post</code> now return structured <code>Result&lt;T,E&gt;</code> maps with <code>status</code> codes. Added <code>net.resolve</code> for DNS lookup.",
+            "<b>Capability Sandbox:</b> Extended <code>CapabilityValidator</code> to enforce <code>NetAccess</code> capability on all <code>net.tcp.*</code>, <code>net.udp.*</code>, and <code>net.http.*</code> syscalls at compile-time."
+        ]
+    },
+    {
         version: "v0.0.8 (27)",
         date: "2026-03-02",
         changes: [
