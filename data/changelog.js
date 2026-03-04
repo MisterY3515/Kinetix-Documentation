@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.9 (32)",
+        date: "2026-03-04",
+        changes: [
+            "<b>Filesystem Directories (<code>data.dir.*</code>):</b> Implemented namespace supporting tree manipulations: <code>data.dir.list</code>, <code>data.dir.create</code> and <code>data.dir.delete</code>.",
+            "<b>Path Safety & Utilities (<code>data.path.*</code>):</b> Provided static normalization functions (`data.path.normalize`) and Sandbox introspection capability (`data.path.isSafe`), empowering code awareness before native OS interaction.",
+            "<b>Experimental File Watcher:</b> Structural stub implementation of <code>data.watch</code> polling integration.",
+            "<b>Extended Capabilities:</b> CapabilityValidator enforces rigorous <code>FsRead</code> and <code>FsWrite</code> checking on the entire newly imported <code>data.dir</code> surface."
+        ]
+    },
+    {
         version: "v0.0.9 (31)",
         date: "2026-03-04",
         changes: [
