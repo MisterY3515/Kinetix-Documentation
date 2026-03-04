@@ -1,5 +1,15 @@
 App.changelog = [
     {
+        version: "v0.0.9 (31)",
+        date: "2026-03-04",
+        changes: [
+            "<b>Filesystem Core (<code>data.file.*</code>):</b> Implemented a robust and ownership-safe file I/O module. Added <code>data.file.read</code>, <code>data.file.write</code>, <code>data.file.exists</code>, <code>data.file.delete</code>, <code>data.file.copy</code>, and <code>data.file.move</code> methods for native file manipulation.",
+            "<b>Path Traversal Guard:</b> Embedded a strict security layer inside the Kinetix VM. All <code>data.file.*</code> routines automatically sanitize inputs, blocking access outside the working directory boundaries and preventing explicit tree traversal (like <code>../</code>) to prevent unauthorized environment breaches.",
+            "<b>Capability Sandbox Update:</b> Extended the compiler's <code>CapabilityValidator</code> to mandate the <code>FsRead</code> capability for non-destructive accesses, and <code>FsWrite</code> capability for mutable, destructive file manipulations like <code>delete</code> and <code>write</code>.",
+            "<b>Structured Return Types:</b> All file operations securely return functional maps (<code>{ok: data}</code> or <code>{err: string}</code>) instead of unwieldy panics, ensuring process safety upon missing files or permission denials."
+        ]
+    },
+    {
         version: "v0.0.9 (30)",
         date: "2026-03-04",
         changes: [
