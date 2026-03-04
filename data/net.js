@@ -4,15 +4,24 @@ App.register('net', {
     category: 'Libraries/Network',
     description: '<p>The <strong>Net</strong> module provides asynchronous networking capabilities for HTTP/1.1, HTTP/2, and WebSocket protocols. Use it to make API requests, download files, and build client-server applications.</p><p>All network operations return <code>Future</code> values and should be used with <code>await</code>. Server features (TCP listeners, WebSocket servers) are planned for a future release.</p>',
     methods: [
-        { name: 'get', ret: 'Future<Response>', params: '(url: String)', desc: 'Async GET request.', example: 'let res = await net.get("https://api.site.comv/data")', implemented: 'v0.0.1 (3)' },
-        { name: 'post', ret: 'Future<Response>', params: '(url: String, body: Variant)', desc: 'Async POST request.', example: 'let res = await net.post("https://api.site.com/submit", { "id": 1 })', implemented: 'v0.0.1 (3)' },
-        { name: 'download', ret: 'Future<File>', params: '(url: String, dest: String)', desc: 'Downloads a file.', example: 'await net.download("https://site.com/file.zip", "local.zip")', implemented: 'v0.0.1 (3)' },
-        { name: 'server_create', ret: 'Server', params: '(port: int)', desc: 'Creates a TCP/HTTP server.', example: 'let server = net.server_create(8080)', status: 'Not Implemented' },
-        { name: 'socket_connect', ret: 'Socket', params: '(addr: String)', desc: 'Opens a raw TCP connection.', example: 'let sock = net.socket_connect("127.0.0.1:9000")', status: 'Not Implemented' },
-        { name: 'socket_bind', ret: 'Socket', params: '(addr: String)', desc: 'Binds a raw TCP socket for listening.', example: 'let server = net.socket_bind("0.0.0.0:8080")', status: 'Not Implemented' },
-        { name: 'udp_bind', ret: 'UdpSocket', params: '(addr: String)', desc: 'Binds a UDP socket.', example: 'let udp = net.udp_bind("0.0.0.0:5000")', status: 'Not Implemented' },
-        { name: 'udp_send', ret: 'void', params: '(sock: UdpSocket, addr: String, data: Buffer)', desc: 'Sends UDP packet.', example: 'net.udp_send(sock, "192.168.1.5:5000", data)', status: 'Not Implemented' },
-        { name: 'dns_lookup', ret: 'List<String>', params: '(host: String)', desc: 'Resolves hostname to IP addresses.', example: 'let ips = net.dns_lookup("google.com")', status: 'Not Implemented' }
+        { name: 'http.get', ret: 'Result<Map>', params: '(url: String)', desc: 'Async GET request returning body and status code.', example: 'let res = net.http.get("https://api.site.com/data")', implemented: 'v0.0.1 (3)' },
+        { name: 'http.post', ret: 'Result<Map>', params: '(url: String, body: String)', desc: 'Async POST request.', example: 'let res = net.http.post("https://api.site.com/submit", "payload")', implemented: 'v0.0.1 (3)' },
+        { name: 'http.download', ret: 'Result<void>', params: '(url: String, dest: String)', desc: 'Downloads a file to disk.', example: 'net.http.download("https://site.com/file.zip", "local.zip")', implemented: 'v0.0.1 (3)' },
+
+        { name: 'tcp.connect', ret: 'Result<Map>', params: '(addr: String, port: int)', desc: 'Connects to a TCP server. Returns Connection ID.', example: 'let c = net.tcp.connect("127.0.0.1", 9000)', implemented: 'v0.0.9 (28)' },
+        { name: 'tcp.listen', ret: 'Result<Map>', params: '(port: int)', desc: 'Binds a TCP Listener to a port. Returns Listener ID.', example: 'let l = net.tcp.listen(8080)', implemented: 'v0.0.9 (28)' },
+        { name: 'tcp.accept', ret: 'Result<Map>', params: '(listener_id: int)', desc: 'Accepts an incoming TCP connection.', example: 'let conn = net.tcp.accept(l)', implemented: 'v0.0.9 (28)' },
+        { name: 'tcp.send', ret: 'Result<void>', params: '(conn_id: int, data: String)', desc: 'Sends data to a TCP connection.', example: 'net.tcp.send(conn, "Hello!")', implemented: 'v0.0.9 (28)' },
+        { name: 'tcp.recv', ret: 'Result<Map>', params: '(conn_id: int, max_bytes: int = 4096)', desc: 'Receives data from a TCP connection.', example: 'let msg = net.tcp.recv(conn, 1024)', implemented: 'v0.0.9 (28)' },
+        { name: 'tcp.recvLine', ret: 'Result<Map>', params: '(conn_id: int)', desc: 'Receives a line of string delimited by a newline.', example: 'let line = net.tcp.recvLine(conn)', implemented: 'v0.0.9 (28)' },
+        { name: 'tcp.close', ret: 'Result<void>', params: '(conn_id: int)', desc: 'Closes a TCP connection.', example: 'net.tcp.close(conn)', implemented: 'v0.0.9 (28)' },
+
+        { name: 'udp.bind', ret: 'Result<Map>', params: '(port: int)', desc: 'Binds a UDP socket.', example: 'let udp = net.udp.bind(5000)', implemented: 'v0.0.9 (28)' },
+        { name: 'udp.send', ret: 'Result<Map>', params: '(sock_id: int, addr: String, port: int, data: String)', desc: 'Sends a UDP packet.', example: 'net.udp.send(udp, "192.168.1.5", 5000, "ping")', implemented: 'v0.0.9 (28)' },
+        { name: 'udp.recv', ret: 'Result<Map>', params: '(sock_id: int, max_bytes: int = 4096)', desc: 'Receives a UDP packet.', example: 'let pkt = net.udp.recv(udp)', implemented: 'v0.0.9 (28)' },
+        { name: 'udp.close', ret: 'Result<void>', params: '(sock_id: int)', desc: 'Closes a UDP socket.', example: 'net.udp.close(udp)', implemented: 'v0.0.9 (28)' },
+
+        { name: 'resolve', ret: 'Result<Map>', params: '(host: String)', desc: 'Resolves hostname to an IP address.', example: 'let ip = net.resolve("google.com")', implemented: 'v0.0.9 (28)' }
     ]
 });
 

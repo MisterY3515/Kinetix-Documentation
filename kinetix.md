@@ -1,6 +1,6 @@
 # Kinetix Language Reference for AI Agents (RAG)
 
-**Current Version**: v0.0.8 (Build 26)
+**Current Version**: v0.0.9 (Build 30)
 **Paradigm**: Hybrid Interpretative/Compiled. Statically (optionally) typed. 
 **Compiler Pipeline**: Source (`.kix`) -> AST (Arena-Allocated) -> 16-bit Bytecode (`.exki`) -> KiVM Execution OR LLVM Backend JIT/Native.
 
@@ -94,5 +94,5 @@ Global functions mapped to modules (use `module.func(...)` or global wrappers).
 - `#include "file.kix"` : Import another Kinetix file.
 - `#version 2` : Ensure codebase build version is >= 2.
 
-## 6. Known Limitations (Build 26)
+## 6. Known Limitations (Build 30)
 - LLVM native execution (`--native` and JIT) is experimental and only fully supports primitives (`int`, `float`, `bool`), conditionals (`if`/`while`), and basic `print`. Full stdlib (Strings, Arrays) is running primarily under the Bytecode VM until Build 25/26 completes the LLVM bindings.
