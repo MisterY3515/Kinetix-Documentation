@@ -1,5 +1,17 @@
 App.changelog = [
     {
+        version: "v0.0.9 (30)",
+        date: "2026-03-04",
+        changes: [
+            "<b>Network Ping Utility:</b> Implemented <code>net.ping(address, timeout)</code> — a TCP connectivity probe that measures round-trip time in milliseconds. Uses port 80 with configurable timeout, safe for unprivileged execution (no raw ICMP required).",
+            "<b>Interface Enumeration:</b> Added <code>net.getInterfaces()</code> which returns a list of network interface maps (<code>{name, addr}</code>). Cross-platform: parses <code>ipconfig</code> (Windows), <code>ip -o -4 addr show</code> (Linux), and <code>ifconfig</code> (macOS). Locale-aware (supports Italian <code>Indirizzo IPv4</code>).",
+            "<b>TLS Stub:</b> Introduced <code>net.tls.connect(addr, port)</code> structural placeholder. Full TLS socket support planned for a future build; HTTPS connectivity already available via <code>net.http.get/post</code>.",
+            "<b>Capability Sandbox:</b> Extended <code>CapabilityValidator</code> to enforce <code>NetAccess</code> on <code>net.ping</code>, <code>net.getInterfaces</code>, and <code>net.tls.*</code> at compile-time.",
+            "<b>RTF File Guard:</b> The CLI now detects Rich Text Format files masquerading as <code>.kix</code> source (common on macOS with TextEdit) and provides a clear error message instead of cryptic parse failures.",
+            "<b>macOS Installer Fix:</b> <code>kivm repair</code> and <code>kivm uninstall</code> now correctly locate the installer binary on macOS/Linux (<code>KinetixInstaller</code> instead of <code>installer.exe</code>)."
+        ]
+    },
+    {
         version: "v0.0.9 (28)",
         date: "2026-03-03",
         changes: [
