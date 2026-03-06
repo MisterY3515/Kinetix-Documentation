@@ -4,18 +4,42 @@ App.register('cli', {
     description: 'Command Line Interface for managing, compiling, and running Kinetix projects.',
     methods: [
         {
+            name: 'init',
+            ret: 'void',
+            params: '<project_name>',
+            desc: 'Inizializza un nuovo progetto Kinetix con scaffolding (project.kicomp e src/main.kix).',
+            example: 'kivm init my_app',
+            implemented: 'v0.0.9 (33)'
+        },
+        {
+            name: 'build',
+            ret: 'void',
+            params: '<path/to/project.kicomp>',
+            desc: 'Compila l\'intero progetto seguendo le direttive e risolvendo le dipendenze offline.',
+            example: 'kivm build project.kicomp',
+            implemented: 'v0.0.9 (33)'
+        },
+        {
+            name: 'start',
+            ret: 'void',
+            params: '<path/to/project.kicomp>',
+            desc: 'Compila ed esegue automaticamente il progetto descritto dal .kicomp.',
+            example: 'kivm start project.kicomp',
+            implemented: 'v0.0.9 (33)'
+        },
+        {
             name: 'exec',
             ret: 'void',
             params: '<file.kix>',
-            desc: 'Compiles and runs a Kinetix source file immediately.',
-            example: 'kivm exec main.kix',
+            desc: '(Legacy) Compila ed esegue un file singolo con permessi globali sbloccati per dev.',
+            example: 'kivm exec script.kix',
             implemented: 'v0.0.1 (1)'
         },
         {
             name: 'run',
             ret: 'void',
             params: '<file.exki>',
-            desc: 'Executes a compiled bytecode bundle.',
+            desc: 'Esegue un bundle binario compilato.',
             example: 'kivm run main.exki',
             implemented: 'v0.0.1 (1)'
         },
@@ -23,16 +47,10 @@ App.register('cli', {
             name: 'compile',
             ret: 'void',
             params: '-i <input> [-o <output>] [--exe]',
-            desc: 'Compiles source to bytecode (.exki) or standalone executable (.exe).',
+            desc: '(Legacy) Compila una singola source in bundle o eseguibile. Sostituito da build per progetti medi.',
             example: [
-                `// Compile to default bytecode (main.exki)
-kivm compile -i main.kix`,
-                `// Compile to custom output path
-kivm compile -i main.kix -o build/game.exki`,
-                `// Compile to standalone executable
-kivm compile -i main.kix --exe`,
-                `// Compile to native object file (LLVM)
-kivm compile -i main.kix --native`
+                `kivm compile -i main.kix`,
+                `kivm compile -i main.kix --exe`
             ],
             implemented: 'v0.0.1 (1)'
         },
@@ -40,7 +58,7 @@ kivm compile -i main.kix --native`
             name: 'version',
             ret: 'string',
             params: '',
-            desc: 'Displays current version info.',
+            desc: 'Mostra la versione del sistema Kinetix in esecuzione.',
             example: 'kivm version',
             implemented: 'v0.0.1 (1)'
         }
